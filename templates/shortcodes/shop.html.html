@@ -1,0 +1,27 @@
+{{ $data := unmarshal .Inner }}
+{{ $affiliate := eq (getenv "NODE_ENV") "production" }}
+
+{{ $title := $data.title }}
+{{ $query := $data.query }}
+
+{{ if (eq $query "") }}
+  {{ $query = $title }}
+{{ end }}
+
+{{ $amazon := printf "https://www.amazon.co.jp/s?k=%s" $query }}
+{{ $rakuten := printf "https://search.rakuten.co.jp/search/mall/%s/?sf=1&used=0&v=2" $query }}
+
+{{ if $affiliate }}
+  {{ $amazon = printf "%s?tag=nyarla-22" $amazon }}
+  {{ $rakuten = printf "https://hb.afl.rakuten.co.jp/hgc/0d591c80.1e6947ee.197d1bf7.7a323c41/?pc=%s" ($rakuten | urlize) }}
+{{ end }}
+
+<figure class="content__card--shop">
+  <nav>
+    <h1><a href="{{ $amazon }}">{{ $title }}</a></h1>
+    <ul>
+      <a href="{{ $amazon }}">Amazon.co.jpで探す</a>
+      <a href="{{ $rakuten }}">楽天で探す</a>
+    </ul>
+  </nav>
+</figure>

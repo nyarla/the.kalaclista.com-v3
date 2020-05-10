@@ -1,0 +1,67 @@
+{{ $args := . }}
+{{ $meta := partial "data/meta.html.html" . | unmarshal }}
+{{ $context := (dict "Site" (index $args 0) "Page" (index $args 1)) }}
+
+{{ $tree := slice }}
+{{ $position := 1 }}
+
+{{ with $context }}
+  {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
+
+  {{ $item := dict }}
+  {{ $item = merge $item (dict "@type" "ListItem") }}
+  {{ $item = merge $item (dict "position" $position) }}
+  {{ $item = merge $item (dict "name" .Site.Params.text.home.title) }}
+  {{ $item = merge $item (dict "item" (absURL "/")) }}
+
+  {{ $tree = $tree | append $item }}
+  {{ $position = add $position 1 }}
+  {{ $item = dict }}
+
+  {{ if or (eq $section "posts") (eq $section "echos") (eq $section "notes") }}
+    {{ $item = merge $item (dict "@type" "ListItem") }}
+    {{ $item = merge $item (dict "position" $position) }}
+    {{ $item = merge $item (dict "name" (index .Site.Params.text $section).title) }}
+    {{ $item = merge $item (dict "item" (absURL $section)) }}
+
+    {{ $tree = $tree | append $item }}
+    {{ $position = add $position 1 }}
+    {{ $item = dict }}
+  {{ end }}
+  
+  {{ if .Page.IsPage }}
+    {{ $content := partial "data/content.html.html" .Page | unmarshal }}
+    {{ $item = merge $item (dict "@type" "ListItem") }}
+    {{ $item = merge $item (dict "position" $position) }}
+    {{ $item = merge $item (dict "name" $meta.title) }}
+    {{ $item = merge $item (dict "item" $meta.url) }}
+
+    {{ $tree = $tree | append $item }}
+    {{ $position = add $position 1 }}
+    {{ $item = dict }}
+  {{ end }}
+{{ end }}
+
+{{ $breadcrumb := dict "@context" "https://schema.org"}}
+{{ $breadcrumb = merge $breadcrumb (dict "@type" "BreadcrumbList") }}
+{{ $breadcrumb = merge $breadcrumb (dict "itemListElement" $tree) }}
+
+{{ $author := dict "@type" "Person" }}
+{{ $author = merge $author (dict "name" "OKAMURA Naoki a.k.a nyarla") }}
+{{ $author = merge $author (dict "email" "nyarla@kalaclista.com") }}
+
+{{ $data := dict "@context" "https://schema.org" }}
+{{ $data = merge $data (dict "author" $author) }}
+
+{{ if $context.Page.IsPage }}
+  {{ $content := partial "data/content.html.html" .Page | unmarshal }}
+  {{ $data = merge $data (dict "@type" $meta.subtype) }}
+  {{ $data = merge $data (dict "@id" $content.url) }}
+  {{ $data = merge $data (dict "headline" $content.title) }}
+{{ else }}
+  {{ $data = merge $data (dict "@type" $meta.type) }}
+  {{ $data = merge $data (dict "@id" $context.Page.Permalink) }}
+  {{ $data = merge $data (dict "headline" $meta.title) }}
+{{ end }}
+
+{{ slice $data $breadcrumb | jsonify }}

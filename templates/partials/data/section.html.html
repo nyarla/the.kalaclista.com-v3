@@ -1,0 +1,21 @@
+{{ $path := .Page.RelPermalink }}
+
+{{ $section := "home" }}
+
+{{ if eq .Page.Kind "404" }}
+  {{ $section = "notfound" }}
+{{ else }}
+  {{ if hasPrefix $path "/posts/" }}
+    {{ $section = "posts" }}
+  {{ else if hasPrefix $path "/echos/" }}
+    {{ $section = "echos" }}
+  {{ else if hasPrefix $path "/notes/" }}
+    {{ $section = "notes" }}
+  {{ else if hasPrefix $path "/search/" }}
+    {{ $section = "search" }}
+  {{ else if hasPrefix $path "/archives/" }}
+    {{ $section = "archives" }}
+  {{ end }}
+{{ end }}
+
+{{ dict "section" $section | jsonify }}

@@ -1,0 +1,18 @@
+{{ $data := unmarshal .Inner }}
+{{ $title := $data.title }}
+{{ $description := $data.description }}
+{{ $permalink := urls.Parse $data.permalink }}
+
+<figure class="content__card--web">
+  <a href="{{ $permalink }}">
+    <h1>{{ $title }}</h1>
+    <blockquote>
+      {{ if (ge (strings.RuneCount $description) 70) }}
+      <p>{{ substr $description 0 70 }}...</p>
+      {{ else }}
+      <p>{{ $description }}</p>
+      {{ end }}
+    </blockquote>
+    <p><cite>{{ replace $permalink.String $permalink.EscapedPath $permalink.Path }}</cite></p>
+  </a>
+</figure>

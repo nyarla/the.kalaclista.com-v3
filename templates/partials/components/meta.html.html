@@ -1,0 +1,79 @@
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link rel="canonical" href="https://the.kalaclista.com{{ .Page.RelPermalink }}">
+
+<link rel="shortcut icon" href="{{ absURL "/favicon.ico" }}">
+<link rel="icon" href="{{ absURL "/favicon.ico" }}" type="image/x-icon">
+<link rel="apple-touch-icon" size="180x180" href="{{ absURL "/apple-touch-icon.png" }}">
+
+{{ $section := (partial "data/section.html.html" . | unmarshal).section }}
+
+{{ if (or (eq $section "posts") (eq $section "echos") (eq $section "notes")) }}
+  <link rel="alternate"
+        type="application/atom+xml"
+        name="{{ printf "%sの Atom 1.0 Feed" (index .Site.Params.text $section).title }}"
+        href="{{ absURL (printf "%s/atom.xml" $section) }}">
+  <link rel="alternate"
+        type="application/rss+xml"
+        name="{{ printf "%sの RSS 2.0 Feed" (index .Site.Params.text $section).title }}"
+        href="{{ absURL (printf "%s/index.xml" $section) }}">
+  <link rel="alternate"
+        type="application/json"
+        name="{{ printf "%sの JSON Feed v1" (index .Site.Params.text $section).title }}"
+        href="{{ absURL (printf "%s/jsonfeed.json" $section) }}">
+{{ else }}
+  <link rel="alternate"
+        type="application/atom+xml"
+        name="{{ printf "%sの Atom 1.0 Feed" (index .Site.Params.text $section).title }}"
+        href="{{ absURL "atom.xml"}}">
+  <link rel="alternate"
+        type="application/rss+xml"
+        name="{{ printf "%sの RSS 2.0 Feed" (index .Site.Params.text $section).title }}"
+        href="{{ absURL "index.xml" }}">
+  <link rel="alternate"
+        type="application/json"
+        name="{{ printf "%sの JSON Feed v1" (index .Site.Params.text $section).title }}"
+        href="{{ absURL "jsonfeed.json" }}">
+{{ end }}
+
+{{ $meta := partial "data/meta.html.html" (slice .Site .Page) | unmarshal }}
+
+{{ if .Page.IsPage }}
+<title>{{ $meta.title }} - {{ $meta.subtitle }}</title>
+{{ else }}
+<title>{{ $meta.subtitle }}</title>
+{{ end }}
+
+<meta name="description" content="{{ $meta.description }}">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@kalaclista">
+<meta name="twitter:creator" content="@kalaclista">
+
+<meta property="og:profile:first_name" content="Naoki">
+<meta property="og:profile:last_name" content="OKAMURA">
+{{ if .Page.IsPage }}
+<meta property="og:site_title" content="{{ $meta.title }}">
+<meta property="og:title" content="{{ $meta.subtitle }}">
+{{ else }}
+<meta property="og:title" content="{{ $meta.subtitle }}">
+{{ end }}
+<meta property="og:description" content="{{ $meta.description }}">
+<meta property="og:image" content="{{ absURL "/apple-touch-icon.png" }}">
+<meta property="og:url" content="{{ .Page.Permalink }}">
+<meta property="og:section" content="{{ $section }}">
+{{ if .Page.IsPage }}
+  <meta property="og:type" content="{{ $meta.subtype }}">
+{{ else }}
+  <meta property="og:type" content="{{ $meta.type }}">
+{{ end }}
+
+{{ range $tag := default (slice) .Page.Params.tags }}
+  <meta property="og:tag" content="{{ $tag }}">
+{{ end }}
+
+<script type="application/json+ld">
+{{ partial "data/jsonld.html.html" (slice .Site .Page) | unmarshal | jsonify }}
+</script>

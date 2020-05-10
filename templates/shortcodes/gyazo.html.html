@@ -1,0 +1,9 @@
+{{ $id := .Get 0 }}
+{{ $link := printf "https://gyazo.com/%s" $id }}
+{{ $image := printf "%s.raw" $link }}
+
+<p class="content__image content__image--gyazo">
+  <a href="nofollow" href="{{ $link }}">
+    <img src="{{ $image }}" width="800" alt="">
+  </a>
+</p>

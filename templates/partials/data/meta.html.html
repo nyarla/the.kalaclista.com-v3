@@ -1,0 +1,68 @@
+{{ $args := . }}
+{{ $context := (dict "Site" (index $args 0) "Page" (index $args 1)) }}
+{{ $section := (partial "data/section.html.html" $context | unmarshal).section }}
+
+{{ $data := dict }}
+{{ with $context }}
+  {{ if eq $section "home" }}
+    {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
+    {{ $data = merge $data (dict "name" .Site.Params.text.home.title) }}
+    {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
+    {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
+
+    {{ if .Page.IsPage }}
+      {{ $data = merge $data (dict "title" .Page.Title) }}
+    {{ else }}
+      {{ $data = merge $data (dict "title" .Site.Params.text.home.title) }}
+    {{ end }}
+
+    {{ $data = merge $data (dict "type" "WebSite") }}
+    {{ $data = merge $data (dict "subtype" "WebPage") }}
+  {{ else if eq $section "notfound" }}
+    {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
+    {{ $data = merge $data (dict "name" .Site.Params.text.notfound.name) }}
+    {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
+    {{ $data = merge $data (dict "message" (.Site.Parms.text.notfound.message | markdownify)) }}
+
+    {{ $data = merge $data (dict "title" .Site.Params.text.notfound.title) }}
+     
+    {{ $data = merge $data (dict "type" "WebSite") }}
+    {{ $data = merge $data (dict "subtype" "WebPage") }}
+  {{ else if or (eq $section "search") (eq $section "archives") }}
+    {{ $data = merge $data (dict "subtitle" (index .Site.Params.text $section).title) }}
+    {{ $data = merge $data (dict "name" (index .Site.Params.text $section).name) }}
+    {{ $data = merge $data (dict "description" (replace (index .Site.Params.text $section).description "<br>" "")) }}
+
+    {{ if eq $section "search" }}
+      {{ $data = merge $data (dict "message" (.Site.Parms.text.search.message | markdownify)) }}
+    {{ else }}
+      {{ $data = merge $data (dict "message" (.Site.Parms.text.fallback.message | markdownify)) }}
+    {{ end }}
+
+    {{ $data = merge $data (dict "title" .Page.Title) }}
+     
+    {{ $data = merge $data (dict "type" "WebSite") }}
+    {{ $data = merge $data (dict "subtype" "WebPage") }}
+  {{ else if or (eq $section "posts") (eq $section "echos") (eq $section "notes") }}
+    {{ $data = merge $data (dict "subtitle" (index .Site.Params.text $section).title) }} 
+    {{ $data = merge $data (dict "name" (index .Site.Params.text $section).name) }}
+    {{ $data = merge $data (dict "description" (replace (index .Site.Params.text $section).description "<br>" "")) }}
+    {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
+
+    {{ if .Page.IsPage }}
+      {{ $data = merge $data (dict "title" .Page.Title) }}
+    {{ else }}
+      {{ $data = merge $data (dict "title" .Page.Title) }}
+    {{ end }}
+
+    {{ if or (eq $section "posts") (eq $section "echos") }}
+      {{ $data = merge $data (dict "type" "Blog") }}
+      {{ $data = merge $data (dict "subtype" "BlogPosting") }}
+    {{ else }}
+      {{ $data = merge $data (dict "type" "WebSite") }}
+      {{ $data = merge $data (dict "subtype" "Article") }}  
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $data | jsonify }}

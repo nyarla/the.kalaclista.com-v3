@@ -1,0 +1,12 @@
+{{ $page := dict }}
+
+{{ $permalink := .Permalink }}
+
+{{ $page = merge $page (dict "id" $permalink) }}
+{{ $page = merge $page (dict "url" $permalink) }}
+{{ $page = merge $page (dict "title" .Title) }}
+{{ $page = merge $page (dict "content_html" (partial "data/markup.html.html" .Content)) }}
+{{ $page = merge $page (dict "date" .Date) }}
+{{ $page = merge $page (dict "tags" (default (slice) .Params.tags)) }}
+
+{{ $page | jsonify }}
