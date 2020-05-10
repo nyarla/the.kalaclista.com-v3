@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "env NODE_ENV='production' hugo -b 'https://the.kalaclista.com'",
+    "test": "yarn build && mocha test/*/*.test.js test/*/*/*.test.js"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "mocha": "^7.1.2",
+    "power-assert": "^1.6.1"
+  }
+}

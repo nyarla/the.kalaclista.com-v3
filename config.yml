@@ -1,0 +1,183 @@
+# Internal
+# ========
+
+metaDataForamt: yaml
+
+languageCode: ja
+defaultLanguageCode: ja
+hasCJKLanguage: true
+defaultContentLanguage: ja
+
+layoutDir: templates
+assetDir: assets
+publishDir: dist
+contentDir: src
+
+# URL
+# ===
+
+disablePathToLower: true
+permalinks:
+  posts: /:year/:month/:day/:slug/
+  echos: /:year/:month/:day/:slug/
+  notes: /:slug/
+  home: /:slug/
+taxonomies:
+  tag: "tags"
+
+paginate: 15
+paginatePath: "pages"
+
+disableKinds:
+  - taxonomyTerm
+
+# Content
+# =======
+
+pygmentsUseClasses: true
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+
+summaryLength: 140
+
+markup:
+  highlight:
+    codeFence: true
+    guessSyntax: false
+    tabWidth: 2
+  goldmark:
+    extensions:
+      definitionList: false
+      footnote: false
+      linkify: false
+      strikethrough: true
+      table: true
+      taskList: false
+      typographer: false
+    parser:
+      attribute: false
+      audoHeadingID: true
+
+related:
+  threashold: 80
+  includeNewer: true
+  indices:
+    - name: tags
+      weight: 100
+    - name: date
+      weight: 10
+
+# Output
+# ======
+
+mediaTypes:
+  application/atom+xml:
+    suffixes:
+      - xml
+
+outputFormats:
+  JSONFeed:
+    mediaTypes: application/json
+    baseName: jsonfeed
+    isPlainText: true
+  Atom:
+    mediaTypes: application/atom+xml
+    baseName: atom
+    isPlainText: false
+
+# Varialbes
+# =========
+
+title: カラクリスタ
+
+params:
+  navigations:
+    - section: home
+      link: "/"
+    - section: posts
+      link: "/posts/"
+    - section: echos
+      link: "/echos/"
+    - section: notes
+      link: "/notes/"
+    - section: search
+      link: "/search/"
+    - section: archives
+      link: "/archives/"
+    - section: github
+      link: "https://github.com/nyarla"
+    - section: twitter
+      link: "https://twitter.com/kalaclista"
+    - section: note
+      link: "https://note.com/kalaclista"
+
+  informations:
+    - label: 運営者
+      contents:
+        - title: プロフィール
+          link: "/nyarla/"
+        - title: カラクリスタについて
+          link: "/about/"
+    - label: 各情報
+      contents:
+        - title: 運営指針
+          link: "/policy/"
+        - title: ライセンス関係
+          link: "/licenses/"
+    - label: その他
+      contents:
+        - title: GitHub
+          link: https://github.com/nyarla
+        - title: GitLab
+          link: https://gitlab.com/nyarla
+        - title: Twitter
+          link: https://twitter.com/kalaclista
+        - title: Note
+          link: https://note.com/kalaclista
+
+  text:
+    fallback:
+      title: カラクリスタ
+      message: なお[インターネットコンテンツと化した『にゅるら』さんとは別の固体](/notes/nyarla-is-not-nyalra)です
+    home:
+      label: 入口
+      title: カラクリスタ
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Web サイトです
+    posts:
+      label: 記事
+      title: カラクリスタ・ブログ
+      name: ブログ
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の個人ブログです
+    echos:
+      label: 雑記
+      title: カラクリスタ・エコーズ
+      name: エコーズ
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』のチラシの裏っぽいモノ
+    notes:
+      label: 覚書
+      title: カラクリスタ・ノート
+      name: ノート
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』のまとめ記事的なノートです
+    search:
+      label: 検索
+      title: カラクリスタ・サーチ
+      name: サーチ
+      description: この Web サイトの中身を検索します
+      message: とは言え、検索だけですべての記事が見付かるかどうは微妙なところが……
+    archives:
+      label: 記録
+      title: カラクリスタ・アーカイブ
+      name: アーカイブ
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Webサイトの過去ログです
+    notfound:
+      title: カラクリスタ・イズ・ノット・ファウンド
+      name: イズ・ノット・ファウンド
+      description: "いわゆる 404 Page not Found。ページが見付かりません"
+      message: 記事などが行方不明です。もしかすると検索すると見付かるかもしれません
+    twitter:
+      label: 小鳥
+    note:
+      label: 別所
+    github:
+      label: 開発
