@@ -22,7 +22,7 @@
     {{ $item = merge $item (dict "@type" "ListItem") }}
     {{ $item = merge $item (dict "position" $position) }}
     {{ $item = merge $item (dict "name" (index .Site.Params.text $section).title) }}
-    {{ $item = merge $item (dict "item" (absURL $section)) }}
+    {{ $item = merge $item (dict "item" (printf "%s/" (absURL $section))) }}
 
     {{ $tree = $tree | append $item }}
     {{ $position = add $position 1 }}

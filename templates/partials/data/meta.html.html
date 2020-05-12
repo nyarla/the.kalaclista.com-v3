@@ -52,7 +52,7 @@
     {{ if .Page.IsPage }}
       {{ $data = merge $data (dict "title" .Page.Title) }}
     {{ else }}
-      {{ $data = merge $data (dict "title" .Page.Title) }}
+      {{ $data = merge $data (dict "title" (index .Site.Params.text $section).title) }}
     {{ end }}
 
     {{ if or (eq $section "posts") (eq $section "echos") }}
