@@ -1,6 +1,6 @@
 const { assert, html } = require("../../lib/testing");
 
-describe("home/ -> _default/list.html # meta", () => {
+describe("/ -> _default/list.html.html # meta", () => {
   const testCases = [
     {
       selector: "html[lang]",

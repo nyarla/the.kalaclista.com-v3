@@ -1,0 +1,13 @@
+@import "../../foundation/color";
+
+a {
+  &:link,
+  &:visited {
+    color: $color-gray-dark;
+  }
+
+  &:hover,
+  &:active {
+    color: $color-gray-darkest;
+  }
+}

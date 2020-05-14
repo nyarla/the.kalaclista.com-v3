@@ -1,0 +1,53 @@
+@import "../../foundation/color";
+
+.c-rounded_hexicon {
+  display: inline-block;
+  position: relative;
+
+  height: calc(var(--Object-Hexicon-Size) + 4px);
+  width: calc(var(--Object-Hexicon-Size) + 4px);
+
+  &::before,
+  &::after,
+  & > * {
+    display: block;
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    bottom: 0.5em;
+    right: 0;
+
+    height: calc(var(--Object-Hexicon-Size) - 1em);
+    width: calc(var(--Object-Hexicon-Size) - 1em);
+    padding: 0 0.5em;
+
+    border-width: 0px 2px;
+    border-style: solid;
+    border-radius: 100%;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before {
+    transform: rotateZ(60deg);
+  }
+
+  &::after {
+    transform: rotateZ(-60deg);
+  }
+
+  &::after {
+    border-color: transparent $color-green-bright transparent
+      $color-magenta-bright;
+  }
+  &::before {
+    border-color: transparent $color-blue-bright transparent
+      $color-yellow-bright;
+  }
+  & > * {
+    border-color: transparent $color-cyan-bright transparent $color-red-bright;
+  }
+}

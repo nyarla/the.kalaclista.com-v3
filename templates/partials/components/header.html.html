@@ -1,0 +1,54 @@
+{{ $section := (partial "data/section.html.html" . | unmarshal ).section }}
+{{ $data := (partial "data/meta.html.html" (slice .Site .Page)) | unmarshal }}
+
+<header class="global__header global__header--{{ $section }}">
+  <a href="{{ absURL "/nyarla/" }}" class="header__avatar c-rounded_hexicon">
+    <img src="{{ absURL "/assets/avatar.svg" }}"
+         alt="avatar icon of nyarla" height="48" width="48">
+  </a>
+
+  <h1 class="header__title">
+    <a href="{{ absURL "/" }}">カラクリスタ</a>
+    {{ if ne $section "home" }}
+    <span>・</span>
+    {{ if ne $section "notfound" }}
+    <a href="{{ absURL (printf "/%s/" $section) }}">
+      {{ (index .Site.Params.text $section).name }}
+    </a>
+    {{ else }}
+    <strong>
+      {{ .Site.Params.text.notfound.title }}
+    </strong>
+    {{ end }}
+    {{ end }}
+  </h1>
+
+  {{ if isset (index .Site.Params.text $section) "description" }}
+  <p class="header__description">{{ (index .Site.Params.text $section).description | markdownify }}</p>
+  {{ end }}
+
+  {{ $message := .Site.Params.text.fallback.message }}
+  {{ if isset (index .Site.Params.text $section) "message" }}
+    {{ $message := (index .Site.Params.text $section).message }}
+  {{ end }}
+  <p class="header__message">{{ $message | markdownify }}</p>
+
+  <nav class="header__sections">
+    {{ range $s := slice "home" "posts" "echos" "notes" "search" "archives" }}
+      {{ $link := "/" }}
+      {{ if ne $s "home" }}
+        {{ $link = printf "/%s/" $s }}
+      {{ end }}
+
+      {{ $current := eq $s $section }}
+
+      <a href="{{ absURL $link }}" {{ if $current }}class="current"{{ end }}>{{ (index $.Site.Params.text $s).label }}</a>
+    {{ end }}
+  </nav>
+
+  <nav class="header__about">
+    <a href="{{ absURL "/nyarla/" }}">私について</a>
+    <a href="{{ absURL "/policies/"}}">運営ポリシー</a>
+    <a href="{{ absURL "/licenses/" }}">ライセンス</a>
+  </nav>
+</header>

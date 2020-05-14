@@ -8,6 +8,11 @@
 <link rel="icon" href="{{ absURL "/favicon.ico" }}" type="image/x-icon">
 <link rel="apple-touch-icon" size="180x180" href="{{ absURL "/apple-touch-icon.png" }}">
 
+{{ $main := resources.Get "scss/main.scss" | resources.ToCSS (dict "targetPath" "assets/main.css") }}
+<style>
+{{ ($main | resources.Minify).Content | safeCSS }}
+</style>
+
 {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
 
 {{ if (or (eq $section "posts") (eq $section "echos") (eq $section "notes")) }}

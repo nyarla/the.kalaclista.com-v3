@@ -92,73 +92,29 @@ outputFormats:
 title: カラクリスタ
 
 params:
-  navigations:
-    - section: home
-      link: "/"
-    - section: posts
-      link: "/posts/"
-    - section: echos
-      link: "/echos/"
-    - section: notes
-      link: "/notes/"
-    - section: search
-      link: "/search/"
-    - section: archives
-      link: "/archives/"
-    - section: github
-      link: "https://github.com/nyarla"
-    - section: twitter
-      link: "https://twitter.com/kalaclista"
-    - section: note
-      link: "https://note.com/kalaclista"
-
-  informations:
-    - label: 運営者
-      contents:
-        - title: プロフィール
-          link: "/nyarla/"
-        - title: カラクリスタについて
-          link: "/about/"
-    - label: 各情報
-      contents:
-        - title: 運営指針
-          link: "/policy/"
-        - title: ライセンス関係
-          link: "/licenses/"
-    - label: その他
-      contents:
-        - title: GitHub
-          link: https://github.com/nyarla
-        - title: GitLab
-          link: https://gitlab.com/nyarla
-        - title: Twitter
-          link: https://twitter.com/kalaclista
-        - title: Note
-          link: https://note.com/kalaclista
-
   text:
     fallback:
       title: カラクリスタ
-      message: なお[インターネットコンテンツと化した『にゅるら』さんとは別の固体](/notes/nyarla-is-not-nyalra)です
+      message: なお[インターネットコンテンツと化した『にゃるら』さんとは別の個体](https://the.kalaclista.com/notes/nyarla-is-not-nyalra/)です。
     home:
-      label: 入口
+      label: ホーム
       title: カラクリスタ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Web サイトです
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Web サイトです。
     posts:
-      label: 記事
+      label: ブログ
       title: カラクリスタ・ブログ
       name: ブログ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の個人ブログです
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の個人ブログです。
     echos:
       label: 雑記
       title: カラクリスタ・エコーズ
       name: エコーズ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』のチラシの裏っぽいモノ
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』のチラシの裏っぽいモノ。
     notes:
-      label: 覚書
+      label: ノート
       title: カラクリスタ・ノート
       name: ノート
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』のまとめ記事的なノートです
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』のまとめ記事的なノートです。
     search:
       label: 検索
       title: カラクリスタ・サーチ
@@ -166,15 +122,15 @@ params:
       description: この Web サイトの中身を検索します
       message: とは言え、検索だけですべての記事が見付かるかどうは微妙なところが……
     archives:
-      label: 記録
+      label: 過去ログ
       title: カラクリスタ・アーカイブ
       name: アーカイブ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Webサイトの過去ログです
+      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Webサイトの過去ログです。
     notfound:
       title: カラクリスタ・イズ・ノット・ファウンド
       name: イズ・ノット・ファウンド
-      description: "いわゆる 404 Page not Found。ページが見付かりません"
-      message: 記事などが行方不明です。もしかすると検索すると見付かるかもしれません
+      description: "いわゆる 404 Page not Found。ページが見付かりません。"
+      message: 記事などが行方不明です。もしかすると検索すると見付かるかもしれません。
     twitter:
       label: 小鳥
     note:
