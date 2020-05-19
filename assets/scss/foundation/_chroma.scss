@@ -1,0 +1,225 @@
+.chroma {
+  background-color: $color-gray-darker;
+  color: $color-gray-brightest;
+}
+.chroma .err {
+  background-color: $color-gray-darkest;
+  color: $color-red-bright;
+}
+.chroma .k {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .kc {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .kd {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .kn {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .kp {
+  color: $color-magenta-bright;
+}
+.chroma .kr {
+  color: $color-sky-bright;
+  font-weight: bold;
+}
+.chroma .kt {
+  color: $color-sky-bright;
+}
+.chroma .n {
+  color: $color-lime-bright;
+}
+.chroma .na {
+  color: $color-orange-dark;
+}
+.chroma .nb {
+  color: $color-gray-bright;
+}
+.chroma .nc {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .no {
+  color: $color-magenta-bright;
+}
+.chroma .nd {
+  color: $color-yellow-dark;
+  font-weight: bold;
+}
+.chroma .ni {
+  color: $color-blue-bright;
+  font-weight: bold;
+}
+.chroma .ne {
+  color: $color-wine-bright;
+}
+.chroma .nf {
+  color: $color-sky-bright;
+}
+.chroma .nl {
+  color: $color-yellow-dark;
+  font-weight: bold;
+}
+.chroma .nn {
+  color: $color-sky-bright;
+  font-weight: bold;
+}
+.chroma .nt {
+  color: $color-lime-bright;
+  font-weight: bold;
+}
+.chroma .nv {
+  color: $color-sky-bright;
+}
+.chroma .nx {
+  color: $color-gray-brightest;
+}
+.chroma .s {
+  color: $color-yellow-bright;
+}
+.chroma .sa {
+  color: $color-yellow-bright;
+}
+.chroma .sb {
+  color: $color-yellow-bright;
+}
+.chroma .sc {
+  color: $color-sky-bright;
+}
+.chroma .dl {
+  color: $color-gray-brighter;
+}
+.chroma .sd {
+  color: $color-gray-bright;
+  font-style: italic;
+}
+.chroma .s2 {
+  color: $color-yellow-bright;
+}
+.chroma .se {
+  color: $color-mint-bright;
+}
+.chroma .sh {
+  color: $color-yellow-dark;
+}
+.chroma .si {
+  color: $color-lime-bright;
+}
+.chroma .sx {
+  color: $color-gray-brighter;
+}
+.chroma .sr {
+  color: $color-yellow-bright;
+}
+.chroma .s1 {
+  color: $color-yellow-bright;
+}
+.chroma .ss {
+  color: $color-cyan-bright;
+}
+.chroma .m {
+  color: $color-yellow-bright;
+}
+.chroma .mb {
+  color: $color-green-bright;
+}
+.chroma .mf {
+  color: $color-green-bright;
+}
+.chroma .mh {
+  color: $color-green-bright;
+}
+.chroma .mi {
+  color: $color-sky-bright;
+}
+.chroma .il {
+  color: $color-green-bright;
+}
+.chroma .mo {
+  color: $color-yellow-bright;
+}
+.chroma .o {
+  color: $color-mint-bright;
+}
+.chroma .ow {
+  color: $color-gray-brightest;
+  font-weight: bold;
+}
+.chroma .c {
+  color: $color-gray-bright;
+}
+.chroma .ch {
+  color: $color-gray-bright;
+  font-style: italic;
+}
+.chroma .cm {
+  color: $color-gray-bright;
+  font-style: italic;
+}
+.chroma .c1 {
+  color: $color-gray-bright;
+  font-style: italic;
+}
+.chroma .cs {
+  color: $color-yellow-bright;
+  font-style: bold;
+}
+.chroma .cp {
+  color: $color-lime-dark;
+  font-style: bold;
+}
+.chroma .cpf {
+  color: $color-lime-dark;
+}
+.chroma .gd {
+  color: $color-gray-dark;
+}
+.chroma .ge {
+  color: $color-gray-brightest;
+  font-style: italic;
+}
+.chroma .gr {
+  color: $color-red-dark;
+}
+.chroma .gh {
+  color: $color-gray-bright;
+  font-weight: bold;
+}
+.chroma .gi {
+  color: $color-lime-bright;
+}
+.chroma .go {
+  color: $color-gray-brighter;
+}
+.chroma .gp {
+  color: $color-magenta-bright;
+  font-weight: bold;
+}
+.chroma .gs {
+  color: $color-gray-brightest;
+  font-weight: bold;
+}
+.chroma .gu {
+  color: $color-gray-brightest;
+  font-weight: bold;
+}
+.chroma .gt {
+  color: $color-blue-bright;
+}
+.chroma .gl {
+  text-decoration: underline;
+}
+.chroma .w {
+  color: $color-gray-dark;
+}
+
+.chroma .language-yaml .p {
+  color: $color-lime-bright;
+  font-weight: bold;
+}

@@ -18,9 +18,9 @@ contentDir: src
 
 disablePathToLower: true
 permalinks:
-  posts: /:year/:month/:day/:slug/
-  echos: /:year/:month/:day/:slug/
-  notes: /:slug/
+  posts: /posts/:year/:month/:day/:slug/
+  echos: /echos/:year/:month/:day/:slug/
+  notes: /notes/:slug/
   home: /:slug/
 taxonomies:
   tag: "tags"

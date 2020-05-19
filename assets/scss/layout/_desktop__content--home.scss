@@ -1,0 +1,47 @@
+@import "../object/component/rounded";
+
+.content__main--home {
+  & > .content__summary {
+    & > a:nth-child(2) {
+      @include u-container--relative;
+
+      font-size: 2em;
+
+      width: 3em;
+
+      margin: 0 27em 0 auto;
+
+      text-align: right;
+
+      &::after {
+        @include c-rounded__ring;
+        top: 50%;
+        right: -0.645em;
+        margin-top: -1.5px;
+      }
+    }
+
+    &.content__summary--notes > a:nth-child(2)::after {
+      border-color: $color-notes-base;
+    }
+
+    &.content__summary--echos > a:nth-child(2)::after {
+      border-color: $color-echos-base;
+    }
+
+    &.content__summary--posts > a:nth-child(2)::after {
+      border-color: $color-posts-base;
+    }
+
+    & > p {
+      margin-top: 2em;
+      margin-right: 54em;
+
+      text-align: right;
+
+      & > a {
+        font-size: 0.8em;
+      }
+    }
+  }
+}

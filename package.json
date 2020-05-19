@@ -3,8 +3,8 @@
   "scripts": {
     "scss": "cp node_modules/normalize.css/normalize.css assets/scss/foundation/_normalize.scss",
     "serve": "yarn scss && env NODE_ENV='development' hugo serve -b 'http://localhost:1313'",
-    "build": "yarn scss && env NODE_ENV='production' hugo -b 'https://the.kalaclista.com'",
-    "test": "yarn scss && yarn build && mocha test/*/*.test.js test/*/*/*.test.js"
+    "build": "yarn scss && env NODE_ENV='production' hugo -b 'https://the.kalaclista.com' --minify",
+    "test": "yarn scss && yarn build && mocha test/*/*.test.js"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",

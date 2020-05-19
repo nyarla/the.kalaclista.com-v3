@@ -1,18 +1,18 @@
 {{ $section := (partial "data/section.html.html" . | unmarshal ).section }}
 {{ $data := (partial "data/meta.html.html" (slice .Site .Page)) | unmarshal }}
 
-<header class="global__header global__header--{{ $section }}">
+<header class="content__header content__header--{{ $section }} u-container--relative">
   <a href="{{ absURL "/nyarla/" }}" class="header__avatar c-rounded_hexicon">
     <img src="{{ absURL "/assets/avatar.svg" }}"
          alt="avatar icon of nyarla" height="48" width="48">
   </a>
 
   <h1 class="header__title">
-    <a href="{{ absURL "/" }}">カラクリスタ</a>
+    <a href="{{ absURL "/" }}" class="c-link--no-decoration">カラクリスタ</a>
     {{ if ne $section "home" }}
     <span>・</span>
     {{ if ne $section "notfound" }}
-    <a href="{{ absURL (printf "/%s/" $section) }}">
+    <a href="{{ absURL (printf "/%s/" $section) }}" class="c-link--no-decoration">
       {{ (index .Site.Params.text $section).name }}
     </a>
     {{ else }}
@@ -33,7 +33,7 @@
   {{ end }}
   <p class="header__message">{{ $message | markdownify }}</p>
 
-  <nav class="header__sections">
+  <nav class="header__sections u-container--absolute">
     {{ range $s := slice "home" "posts" "echos" "notes" "search" "archives" }}
       {{ $link := "/" }}
       {{ if ne $s "home" }}
@@ -42,11 +42,11 @@
 
       {{ $current := eq $s $section }}
 
-      <a href="{{ absURL $link }}" {{ if $current }}class="current"{{ end }}>{{ (index $.Site.Params.text $s).label }}</a>
+      <a href="{{ absURL $link }}" class="{{ if $current }}current{{ end }} c-link--no-decoration">{{ (index $.Site.Params.text $s).label }}</a>
     {{ end }}
   </nav>
 
-  <nav class="header__about">
+  <nav class="header__about u-container--absolute">
     <a href="{{ absURL "/nyarla/" }}">私について</a>
     <a href="{{ absURL "/policies/"}}">運営ポリシー</a>
     <a href="{{ absURL "/licenses/" }}">ライセンス</a>

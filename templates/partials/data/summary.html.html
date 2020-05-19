@@ -1,0 +1,7 @@
+{{ $src := . }}
+
+{{ if gt (len $src) 140 }}
+  {{ dict "summary" (printf "%s・・・" (substr $src 0 140)) | jsonify }}
+{{ else }}
+  {{ dict "summary" $src | jsonify }}
+{{ end }}

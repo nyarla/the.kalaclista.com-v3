@@ -1,0 +1,58 @@
+@import "../object/component/rounded";
+@import "../object/utility/position";
+
+.content__main {
+  & > .content__summary--entries,
+  & > .content__entry {
+    & > a:nth-child(2) {
+      @include u-container--relative;
+      font-size: 1em;
+      margin: 0 54em 0 auto;
+      padding-top: 0.75em;
+      width: 8em;
+      text-align: right;
+
+      &::after {
+        @include c-rounded--ring;
+        top: 62.5%;
+        right: -1.35em;
+      }
+    }
+  }
+
+  & > .content__entry {
+    padding-bottom: 0;
+    & > section:last-child {
+      width: 45em;
+      margin-left: auto;
+      margin-right: 7em;
+    }
+  }
+}
+
+.content__main--posts {
+  & > .content__summary {
+    & > a:nth-child(2)::after {
+      border-color: $color-posts-base;
+    }
+  }
+}
+
+.content__main--echos {
+  & > .content__entry {
+    & > a:nth-child(2)::after {
+      border-color: $color-echos-base;
+    }
+  }
+}
+
+.content__main--notes {
+  & > .content__summary {
+    & > a:nth-child(2)::after {
+      border-color: $color-notes-base;
+    }
+    &:last-child > a > p {
+      margin-bottom: 7em;
+    }
+  }
+}

@@ -1,9 +1,16 @@
 @import "foundation/normalize";
 @import "foundation/base";
+@import "foundation/chroma";
+
+@import "object/utility/clearfix";
+@import "object/utility/decoration";
+@import "object/utility/position";
+
+@import "object/project/content";
 
 @import "object/component/link";
-@import "object/component/rounded_hexicon";
+@import "object/component/rounded";
 
-@media (min-width: 65em) {
+@media (min-width: 70em) {
   @import "layout/desktop";
 }

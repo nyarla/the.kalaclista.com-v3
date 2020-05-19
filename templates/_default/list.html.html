@@ -4,6 +4,19 @@
     {{ partial "components/meta.html.html" . }}
   </head>
   <body>
+    {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
     {{ partial "components/header.html.html" . }}
+
+    <main class="content__main content__main--{{ $section }}">
+    {{ if eq $section "home" }}
+      {{ partial "pages/home.html.html" . }}
+    {{ else if or (eq $section "posts") }}
+      {{ partial "pages/posts.html.html" . }}
+    {{ else if or (eq $section "echos") }}
+      {{ partial "pages/echos.html.html" . }}
+    {{ else if or (eq $section "notes") }}
+      {{ partial "pages/notes.html.html" . }}
+    {{ end }}
+    </main>
   </body>
 </html>

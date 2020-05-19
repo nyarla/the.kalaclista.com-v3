@@ -1,0 +1,179 @@
+@import "../utility/position";
+@import "../component/rounded";
+
+.p-content {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    line-height: 1.414em;
+  }
+  & h1 {
+    font-size: 1.625em;
+  }
+  & h2 {
+    font-size: 1.5em;
+  }
+  & h3 {
+    font-size: 1.375em;
+  }
+  & h4 {
+    font-size: 1.25em;
+  }
+  & h5 {
+    font-size: 1.125em;
+  }
+  & h6 {
+    font-size: 1em;
+  }
+
+  & p {
+    line-height: 1.727em;
+  }
+
+  & hr {
+    border: none;
+    border-radius: 3px;
+    height: 3px;
+    background-color: $color-hr-base;
+  }
+
+  & blockquote {
+    @include u-container--relative;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    &::after {
+      @include u-decoration__container;
+      top: 0;
+      bottom: 0;
+      left: -0.5em;
+      width: 3px;
+      border-radius: 3px;
+      background-color: $color-magenta-dark;
+    }
+  }
+
+  & ol,
+  & ul {
+    padding-left: 0;
+    margin-left: 1em;
+    list-style-position: outside;
+  }
+
+  & ul > li {
+    @include u-container--relative;
+    list-style: none;
+    &::after {
+      @include c-rounded__dot;
+      top: 50%;
+      left: -0.5em;
+      margin-top: -1.5px;
+      margin-left: -3px;
+      border-color: $color-gray-darker;
+    }
+  }
+
+  & pre {
+    background-color: $color-gray-darker;
+    color: $color-gray-brighter;
+    padding: 0.25em 0.5em;
+    overflow-x: scroll;
+    border: 3px solid $color-gray-bright;
+    border-radius: 3px;
+  }
+
+  & .content__image--gyazo {
+    & > a > img {
+      max-width: 45em;
+      border-radius: 6px;
+      border: 3px solid $color-gray-bright;
+    }
+  }
+
+  & .content__card--shop,
+  & .content__card--web {
+    @include u-container--relative;
+    margin-right: 1em;
+    margin-left: 1em;
+
+    &::after {
+      @include u-decoration__container;
+      top: 0;
+      bottom: 0;
+      left: -0.5em;
+      width: 3px;
+      border-radius: 3px;
+    }
+  }
+
+  & .content__card--shop {
+    &::after {
+      background-color: $color-lime-dark;
+    }
+
+    & > nav {
+      & > h1 {
+        font-size: 1.25em;
+      }
+
+      & > a {
+        @include u-container--relative;
+        display: inline-block;
+        margin-left: 1em;
+
+        &::after {
+          @include u-decoration__container;
+          top: 0;
+          bottom: 0;
+          left: -0.5em;
+          width: 3px;
+          border-radius: 3px;
+        }
+        &[href*="amazon.co.jp"]::after {
+          background-color: #ff9900;
+        }
+        &[href*="rakuten.co.jp"]::after {
+          background-color: #bf0000;
+        }
+      }
+    }
+  }
+
+  & .content__card--web {
+    @include u-container--relative;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    &::after {
+      background-color: $color-cyan-bright;
+    }
+
+    & > a {
+      text-decoration: none;
+
+      & > h1 {
+        font-size: 1.25em;
+        color: $color-gray-darkest;
+      }
+
+      & > blockquote {
+        color: $color-gray-darkest;
+      }
+
+      & > p > cite {
+        color: $color-green-dark;
+        font-style: normal;
+      }
+
+      &:hover,
+      &:active {
+        & > h1 {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

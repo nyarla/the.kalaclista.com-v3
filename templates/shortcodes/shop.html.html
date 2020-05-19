@@ -4,7 +4,7 @@
 {{ $title := $data.title }}
 {{ $query := $data.query }}
 
-{{ if (eq $query "") }}
+{{ if not $query }}
   {{ $query = $title }}
 {{ end }}
 
@@ -18,10 +18,8 @@
 
 <figure class="content__card--shop">
   <nav>
-    <h1><a href="{{ $amazon }}">{{ $title }}</a></h1>
-    <ul>
-      <a href="{{ $amazon }}">Amazon.co.jpで探す</a>
-      <a href="{{ $rakuten }}">楽天で探す</a>
-    </ul>
+    <h1><a href="{{ $amazon }}" class="c-link--no-decoration">{{ $title }}</a></h1>
+    <a href="{{ $amazon }}" class="c-link--no-decoration">Amazon.co.jpで探す</a>
+    <a href="{{ $rakuten }}" class="c-link--no-decoration">楽天で探す</a>
   </nav>
 </figure>

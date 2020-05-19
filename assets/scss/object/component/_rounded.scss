@@ -1,4 +1,24 @@
 @import "../../foundation/color";
+@import "../utility/decoration";
+
+@mixin c-rounded__dot {
+  @include u-decoration__container;
+
+  width: 0;
+  height: 0;
+
+  border: 3px solid;
+  border-radius: 3px;
+}
+
+@mixin c-rounded__ring {
+  @include u-decoration__container;
+  content: "";
+  width: 3px;
+  height: 3px;
+  border: 3px solid;
+  border-radius: 9px;
+}
 
 .c-rounded_hexicon {
   display: inline-block;

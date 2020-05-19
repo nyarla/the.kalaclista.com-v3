@@ -11,3 +11,28 @@ a {
     color: $color-gray-darkest;
   }
 }
+
+@media screen and (pointer: coarse) {
+  .c-link--no-decoration {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (pointer: fine) {
+  .c-link--no-decoration {
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}

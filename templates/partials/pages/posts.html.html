@@ -1,0 +1,23 @@
+{{ $pager := .Paginate .Pages.ByDate.Reverse }}
+
+{{ range $page := $pager.Pages }}
+{{ $data := partial "data/content.html.html" $page | unmarshal }}
+<section class="content__summary content__summary--entries content__summary--{{ $page.Section }} u-clearfix">
+ <a href="{{ $data.url }}">
+    <h1>{{ $data.title }}</h1>
+    <p>{{ (partial "data/summary.html.html" ($data.content_html | safeHTML | plainify) | unmarshal).summary }}</p>
+  </a>
+  <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/02/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
+</section>
+{{ end }}
+
+<nav class="navigation--paginate u-clearfix">
+  <p>
+    {{ if $pager.HasPrev }}
+    <a href="{{ absURL $pager.Prev.URL }}" class="navigation__prev">前へ</a>
+    {{ end }}
+    {{ if $pager.HasNext }}
+    <a href="{{ absURL $pager.Next.URL }}" class="navigation__next">次へ</a>
+    {{ end }}
+  </p>
+</nav>

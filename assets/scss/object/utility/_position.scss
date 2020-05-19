@@ -1,0 +1,15 @@
+.u-container--relative {
+  position: relative;
+}
+
+@mixin u-container--relative {
+  position: relative;
+}
+
+.u-container--absolute {
+  position: absolute;
+}
+
+@mixin u-container--absolute {
+  position: absolute;
+}
