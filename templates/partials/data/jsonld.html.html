@@ -34,7 +34,7 @@
     {{ $item = merge $item (dict "@type" "ListItem") }}
     {{ $item = merge $item (dict "position" $position) }}
     {{ $item = merge $item (dict "name" $meta.title) }}
-    {{ $item = merge $item (dict "item" $meta.url) }}
+    {{ $item = merge $item (dict "item" $context.Page.Permalink) }}
 
     {{ $tree = $tree | append $item }}
     {{ $position = add $position 1 }}
@@ -54,7 +54,7 @@
 {{ $data = merge $data (dict "author" $author) }}
 
 {{ if $context.Page.IsPage }}
-  {{ $content := partial "data/content.html.html" .Page | unmarshal }}
+  {{ $content := partial "data/content.html.html" $context.Page | unmarshal }}
   {{ $data = merge $data (dict "@type" $meta.subtype) }}
   {{ $data = merge $data (dict "@id" $content.url) }}
   {{ $data = merge $data (dict "headline" $content.title) }}

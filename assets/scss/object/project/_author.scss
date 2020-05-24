@@ -1,0 +1,63 @@
+.author {
+  &::before {
+    @include u-decoration__container;
+    width: 3px;
+    left: -0.5em;
+    top: 0;
+    bottom: 0;
+    background-color: $color-sky-bright;
+  }
+
+  & > a {
+    display: block;
+    float: left;
+    background-color: $color-gray-brightest;
+    border: 3px solid $color-hr-base;
+    border-radius: 100%;
+    margin: 0 1em;
+  }
+
+  & > h1,
+  & > section,
+  & > nav {
+    margin-left: 11em;
+  }
+
+  & > h1,
+  & > h2 {
+    font-size: 1em;
+    line-height: 1.414em;
+  }
+
+  & > nav {
+    & > a {
+      @include u-container--relative;
+      margin-left: 1em;
+
+      &::before {
+        @include u-decoration__container;
+        top: 0;
+        left: -0.5em;
+        bottom: 0;
+        width: 3px;
+        border-radius: 3px;
+      }
+    }
+
+    & > a[href*="twitter.com"]::before {
+      background-color: #1da1f2;
+    }
+    & > a[href*="github.com"]::before {
+      background-color: #333;
+    }
+    & > a[href*="gitlab.com"]::before {
+      background-color: #554488;
+    }
+    & > a[href*="note.com"]::before {
+      background-color: #228d74;
+    }
+    & > a[href*="b.hatena.ne.jp"]::before {
+      background-color: #009ff8;
+    }
+  }
+}

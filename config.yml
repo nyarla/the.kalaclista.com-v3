@@ -21,7 +21,7 @@ permalinks:
   posts: /posts/:year/:month/:day/:slug/
   echos: /echos/:year/:month/:day/:slug/
   notes: /notes/:slug/
-  home: /:slug/
+  pages: /:filename/
 taxonomies:
   tag: "tags"
 
@@ -92,6 +92,11 @@ outputFormats:
 title: カラクリスタ
 
 params:
+  profile: |-
+    2004年から2020年に掛けて、もうずっと病気療養中（家事手伝い）
+
+    ちなみに2006年ぐらいからこの名前で活動をしていますが、
+    気が付けば[自分以外に著名な『にゃるら』さんが爆誕していました](/notes/nyarla-is-not-nyalra)。
   text:
     fallback:
       title: カラクリスタ
@@ -119,8 +124,8 @@ params:
       label: 検索
       title: カラクリスタ・サーチ
       name: サーチ
-      description: この Web サイトの中身を検索します
-      message: とは言え、検索だけですべての記事が見付かるかどうは微妙なところが……
+      description: この  Web サイトの中身を検索します。なお Google Custom Search Engine 製。
+      message: とは言え、検索だけですべての記事が見付かるかどうは微妙なところが……。
     archives:
       label: 過去ログ
       title: カラクリスタ・アーカイブ

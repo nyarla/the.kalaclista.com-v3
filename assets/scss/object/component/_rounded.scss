@@ -20,7 +20,7 @@
   border-radius: 9px;
 }
 
-.c-rounded_hexicon {
+.c-rounded__hexicon {
   display: inline-block;
   position: relative;
 
@@ -37,8 +37,8 @@
     bottom: 0.5em;
     right: 0;
 
-    height: calc(var(--Object-Hexicon-Size) - 1em);
-    width: calc(var(--Object-Hexicon-Size) - 1em);
+    height: calc(var(--Object-Hexicon-Size) - (var(--Object-Hexicon-Size) / 3));
+    width: calc(var(--Object-Hexicon-Size) - (var(--Object-Hexicon-Size) / 3));
     padding: 0 0.5em;
 
     border-width: 0px 2px;

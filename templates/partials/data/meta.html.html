@@ -32,11 +32,11 @@
     {{ $data = merge $data (dict "subtitle" (index .Site.Params.text $section).title) }}
     {{ $data = merge $data (dict "name" (index .Site.Params.text $section).name) }}
     {{ $data = merge $data (dict "description" (replace (index .Site.Params.text $section).description "<br>" "")) }}
-
+    
     {{ if eq $section "search" }}
-      {{ $data = merge $data (dict "message" (.Site.Parms.text.search.message | markdownify)) }}
+      {{ $data = merge $data (dict "message" (.Site.Params.text.search.message | markdownify)) }}
     {{ else }}
-      {{ $data = merge $data (dict "message" (.Site.Parms.text.fallback.message | markdownify)) }}
+      {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
     {{ end }}
 
     {{ $data = merge $data (dict "title" .Page.Title) }}

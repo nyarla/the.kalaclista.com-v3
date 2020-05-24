@@ -1,0 +1,28 @@
+.share {
+  & > a {
+    vertical-align: middle;
+
+    & > img {
+      margin-top: -3px;
+      margin-right: 0.25em;
+      width: 16px;
+      height: 16px;
+      padding: 2px;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+  }
+
+  & > a.share__pinboard > img {
+    background-color: #0000e6;
+  }
+  & > a.share__twitter > img {
+    background-color: #1da1f2;
+  }
+  & > a.share__facebook > img {
+    background-color: #3b5998;
+  }
+  & > a.share__hatena-bookmark > img {
+    background-color: #009ff8;
+  }
+}

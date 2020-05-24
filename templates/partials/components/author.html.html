@@ -1,0 +1,19 @@
+<aside class="author">
+  <a href="{{ absURL "/nyarla/" }}" >
+    <img src="{{ absURL "/assets/avatar.svg" }}" width="128" height="128" alt="Avatar アイコン">
+  </a>
+  <h1>書いてる人</h1>
+  <h2>
+    <a href="{{ absURL "/nyarla/" }}" class="c-link--no-decoration">『輝かしい青春』なんて失かった方の『にゃるら』<br>（カラクリスタのにゃるら）</a>
+  </h2>
+  <nav>
+    <a target="_blank" class="c-link--no-decoration" href="https://twitter.com/kalaclista">Twitter</a>
+    <a target="_blank" class="c-link--no-decoration" href="https://github.com/nyarla">GitHub</a>
+    <a target="_blank" class="c-link--no-decoration" href="https://gitlab.com/nyarla">GitLab</a>
+    <a target="_blank" class="c-link--no-decoration" href="https://note.com/kalaclista/">ノート</a>
+    <a target="_blank" class="c-link--no-decoration" href="https://b.hatena.ne.jp/nyarla-net/">はてブ</a>
+  </nav>
+  <section class="p-content">
+    {{ .Site.Params.profile | markdownify }}
+  </section>
+</aside>

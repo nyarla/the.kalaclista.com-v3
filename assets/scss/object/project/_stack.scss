@@ -1,0 +1,29 @@
+.stack {
+  & > a {
+    vertical-align: middle;
+
+    & > img {
+      margin-top: -3px;
+      margin-right: 0.25em;
+      width: 16px;
+      height: 16px;
+      padding: 2px;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+  }
+
+  & > a.stack__pinboard > img {
+    background-color: #0000e6;
+  }
+  & > a.stack__instapaper > img {
+    background-color: #000;
+  }
+  & > a.stack__pocket > img {
+    background-color: #ef4056;
+    transform: rotate(90deg);
+  }
+  & > a.stack__hatena-bookmark > img {
+    background-color: #009ff8;
+  }
+}

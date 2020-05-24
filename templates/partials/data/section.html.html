@@ -4,6 +4,8 @@
 
 {{ if eq .Page.Kind "404" }}
   {{ $section = "notfound" }}
+{{ else if eq .Page.Kind "taxonomy" }}
+  {{ $section = "tags" }}
 {{ else }}
   {{ if hasPrefix $path "/posts/" }}
     {{ $section = "posts" }}

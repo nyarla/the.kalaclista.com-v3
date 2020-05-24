@@ -2,7 +2,7 @@
 {{ $data := (partial "data/meta.html.html" (slice .Site .Page)) | unmarshal }}
 
 <header class="content__header content__header--{{ $section }} u-container--relative">
-  <a href="{{ absURL "/nyarla/" }}" class="header__avatar c-rounded_hexicon">
+  <a href="{{ absURL "/nyarla/" }}" class="header__avatar c-rounded__hexicon">
     <img src="{{ absURL "/assets/avatar.svg" }}"
          alt="avatar icon of nyarla" height="48" width="48">
   </a>
@@ -23,15 +23,8 @@
     {{ end }}
   </h1>
 
-  {{ if isset (index .Site.Params.text $section) "description" }}
-  <p class="header__description">{{ (index .Site.Params.text $section).description | markdownify }}</p>
-  {{ end }}
-
-  {{ $message := .Site.Params.text.fallback.message }}
-  {{ if isset (index .Site.Params.text $section) "message" }}
-    {{ $message := (index .Site.Params.text $section).message }}
-  {{ end }}
-  <p class="header__message">{{ $message | markdownify }}</p>
+  <p class="header__description">{{ $data.description | safeHTML }}</p>
+  <p class="header__message">{{ $data.message | safeHTML }}</p>
 
   <nav class="header__sections u-container--absolute">
     {{ range $s := slice "home" "posts" "echos" "notes" "search" "archives" }}

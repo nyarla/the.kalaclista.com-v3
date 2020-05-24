@@ -1,5 +1,44 @@
-{{ $pager := .Paginate .Pages.ByDate.Reverse }}
+{{ if .Page.IsPage }}
+  {{ $data := partial "data/content.html.html" . | unmarshal }}
+  <article class="content__entry content__entry--{{ .Section }} u-clearfix">
+    <a href="{{ $data.url }}"><h1>{{ $data.title }}</h1></a>
+    <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
+    <nav>
+    {{ partial "components/stack.html.html" . }}
+    {{ with .Page.Params.tags }}
+    <aside class="tags">
+    {{ range $tag := . }}
+    <a href="{{ absURL (printf "/tags/%s/" $tag) }}">{{ $tag }}</a>
+    {{ end }}
+    </aside>
+    {{ end }}
+    {{ partial "components/adsense.html.html" . }}
+    </nav>
+    <section class="p-content">
+      {{ $data.content_html | safeHTML }}
+    </section>
+    {{ partial "components/share.html.html" . }}
+    {{ partial "components/comment.html.html" . }}
+  </article>
 
+  {{ partial "components/subscribe.html.html" . }}
+  {{ partial "components/adsense.html.html" . }}
+  {{ partial "components/author.html.html" . }}
+
+  <nav class="navigation--paginate u-clearfix">
+    <p>
+      {{ with .NextInSection }}
+      <a href="{{ .Permalink }}" class="navigation__prev">前の記事</a>
+      {{ end }}
+
+      {{ with .PrevInSection }}
+      <a href="{{ .Permalink }}" class="navigation__next">次の記事</a>
+      {{ end }}
+    </p>
+  </nav>
+{{ else }}
+
+{{ $pager := .Paginate .Pages.ByDate.Reverse }}
 {{ range $page := $pager.Pages }}
 {{ $data := partial "data/content.html.html" $page | unmarshal }}
 <section class="content__summary content__summary--entries content__summary--{{ $page.Section }} u-clearfix">
@@ -7,7 +46,7 @@
     <h1>{{ $data.title }}</h1>
     <p>{{ (partial "data/summary.html.html" ($data.content_html | safeHTML | plainify) | unmarshal).summary }}</p>
   </a>
-  <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/02/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
+  <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
 </section>
 {{ end }}
 
@@ -21,3 +60,5 @@
     {{ end }}
   </p>
 </nav>
+
+{{ end }}
