@@ -22,6 +22,14 @@ THIRDPARTY RESOUCES
 
 ### [drawic](https://hail2u.github.io/drawic/)
 
+  * `static/assets/facebook.svg`
+  * `static/assets/feed.svg`
+  * `static/assets/hatena-bookmark.svg`
+  * `static/assets/instapaper.svg`
+  * `static/assets/next.svg`
+  * `static/assets/pinboard.svg`
+  * `static/assets/twitter.svg`
+
 > CC0
 > 
 > To the extent possible under law, [Kyo Nagashima](https://hail2u.net/) has waived all copyright and related or neighboring rights to Drawic.
