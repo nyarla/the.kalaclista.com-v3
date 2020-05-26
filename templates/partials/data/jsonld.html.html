@@ -1,6 +1,5 @@
-{{ $args := . }}
 {{ $meta := partial "data/meta.html.html" . | unmarshal }}
-{{ $context := (dict "Site" (index $args 0) "Page" (index $args 1)) }}
+{{ $context := . }}
 
 {{ $tree := slice }}
 {{ $position := 1 }}
@@ -30,6 +29,16 @@
   {{ end }}
   
   {{ if .Page.IsPage }}
+    {{ $content := partial "data/content.html.html" .Page | unmarshal }}
+    {{ $item = merge $item (dict "@type" "ListItem") }}
+    {{ $item = merge $item (dict "position" $position) }}
+    {{ $item = merge $item (dict "name" $meta.title) }}
+    {{ $item = merge $item (dict "item" $context.Page.Permalink) }}
+
+    {{ $tree = $tree | append $item }}
+    {{ $position = add $position 1 }}
+    {{ $item = dict }}
+  {{ else if eq $section "tags" }}
     {{ $content := partial "data/content.html.html" .Page | unmarshal }}
     {{ $item = merge $item (dict "@type" "ListItem") }}
     {{ $item = merge $item (dict "position" $position) }}

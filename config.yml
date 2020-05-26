@@ -78,13 +78,27 @@ mediaTypes:
 
 outputFormats:
   JSONFeed:
-    mediaTypes: application/json
+    mediaType: application/json
     baseName: jsonfeed
     isPlainText: true
   Atom:
-    mediaTypes: application/atom+xml
+    mediaType: application/atom+xml
     baseName: atom
-    isPlainText: false
+    isPainText: false
+
+outputs:
+  home:
+    - HTML
+    - Atom
+    - RSS
+    - JSONFeed
+  section:
+    - HTML
+    - Atom
+    - RSS
+    - JSONFeed
+  page:
+    - HTML
 
 # Varialbes
 # =========

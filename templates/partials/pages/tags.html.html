@@ -1,0 +1,103 @@
+<article class="content__entry content__entry--tags">
+  <a href="{{ absURL (printf "/tags/%s/" .Data.Term) }}">
+    <h1>タグ：{{ .Data.Term }}</h1>
+  </a>
+  <section class="p-content p-content--tags">
+    {{ $before := "" }}
+    {{ $posts := slice }}
+    {{ $echos := slice }}
+    {{ $notes := slice }}
+    {{ range $page := where .Data.Pages.ByDate.Reverse ".Type" "!=" "pages" }}
+      {{ $key := $page.Date.Format "2006-01" }}
+      {{ if ne $before $key }}
+
+      {{ if ne $before "" }}
+        <dl>
+        {{ if ne (len $posts) 0 }}
+        <dt>ブログ</dt>
+        <dd>
+          <ul>
+            {{ range $item := $posts }}
+            <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+            {{ end }}
+            {{ $posts = slice }}
+          </ul>
+        </dd>
+        {{ end }}
+
+        {{ if ne (len $echos) 0 }}
+        <dt>雑記</dt>
+        <dd>
+          <ul>
+          {{ range $item := $echos }}
+          <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+          {{ end }}
+          {{ $echos = slice }}
+          </ul>
+        </dd>
+        {{ end }}
+
+        {{ if ne (len $notes) 0 }}
+        <dt>ノート</dt>
+        <dd>
+          <ul>
+          {{ range $item := $notes }}
+          <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+          {{ end }}
+          {{ $notes = slice }}
+          </ul>
+        </dd>
+        {{ end }}
+      </dl>
+      {{ end }}
+
+        <h1 id="{{ $page.Date.Format "/2006/01/" }}">{{ $page.Date.Format "2006年1月" }}</h1>
+      {{ end }}
+      {{ if eq $page.Type "posts" }}
+        {{ $posts = $posts | append $page }}
+      {{ else if eq $page.Type "echos" }}
+        {{ $echos = $echos | append $page }}
+      {{ else if eq $page.Type "notes" }}
+        {{ $notes = $notes | append $page }}
+      {{ end }}
+      {{ $before = $key }}
+    {{ end }}
+      {{ if ne (len $posts) 0 }}
+        <dl>
+        <dt>ブログ</dt>
+        <dd>
+          <ul>
+            {{ range $item := $posts }}
+            <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+            {{ end }}
+            {{ $posts = slice }}
+          </ul>
+        </dd>
+        {{ end }}
+
+        {{ if ne (len $echos) 0 }}
+        <dt>雑記</dt>
+        <dd>
+          <ul>
+          {{ range $item := $echos }}
+          <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+          {{ end }}
+          {{ $echos = slice }}
+          </ul>
+        </dd>
+        {{ end }}
+
+        {{ if ne (len $notes) 0 }}
+        <dt>ノート</dt>
+        <dd>
+          <ul>
+          {{ range $item := $notes }}
+          <li><a href="{{ $item.Permalink }}">{{ $item.Title }}</a></li>
+          {{ end }}
+          {{ $notes = slice }}
+          </ul>
+        </dd>
+      </dl>
+      {{ end }}
+  </section>
+</article>

@@ -1,0 +1,68 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom">
+  {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
+  {{ $meta := partial "data/meta.html.html" . | unmarshal }}
+
+  <title>{{ $meta.title }}</title>
+  <summary>
+    {{ $meta.description }}
+  </summary>
+  
+  <link href="{{ .Permalink }}" />
+  <link rel="self " href="{{ .Permalink }}" />
+  <id>{{ .Permalink }}</id>
+
+  <icon>{{ absURL "/apple-touch-icon.png" }}</icon>
+  <author>
+    <name>OKAMURA Naoki a.k.a nyarla</name>
+    <email>nyarla@kalaclista.com</email>
+    <uri>https://the.kalaclista.com/nyarla/</uri>
+  </author>
+
+  {{ $src := where .Site.RegularPages.ByDate.Reverse ".Type" "!=" "pages" }}
+  {{ if ne $section "home" }}
+    {{ $src = .Pages.ByDate.Reverse }}
+  {{ end }}
+
+  {{ $first := index $src 0 }}
+
+  <updated>{{ $first.Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>  
+
+  <generator>Hugo - https://gohugo.io/</generator>
+
+  {{ $pages := slice }}
+
+  {{ range $page := first 15 $src }}
+    {{ $data := (partial "data/content.html.html" $page | unmarshal) }}
+    {{ $data = merge $data (dict "type" $page.Type) }}
+    {{ if not $page.Lastmod.IsZero }}
+      {{ $data = merge $data (dict "lastmod" ($page.Lastmod.Format "2006-01-02T15:04:05-07:00")) }}
+    {{ else }}
+      {{ $data = merge $data (dict "lastmod" $page.Date) }}
+    {{ end }}
+    {{ $pages = $pages | append $data }}
+  {{ end }}
+
+  {{ range $page := first 15 $pages }}
+  <entry>
+    {{ if eq $section "home" }}
+    <title>{{ $page.title }}（{{ (index $.Site.Params.text $page.type).label }}）</title>
+    {{ else }}
+    <title>{{ $page.title }}</title>
+    {{ end }}
+    <link href="{{ $page.url }}"/>
+    <author>
+    <name>OKAMURA Naoki a.k.a nyarla</name>
+      <email>nyarla@kalaclista.com</email>
+      <uri>https://the.kalaclista.com/nyarla/</uri>
+    </author>
+    <published>{{ $page.date }}</published>
+    <lastmod>{{ $page.lastmod }}</lastmod>
+    <content type="html">
+      {{ `<![CDATA[` | safeHTML }}
+      {{ $page.content_html | safeHTML }}
+      {{ `]]>` | safeHTML }}
+    </content>
+  </entry>
+  {{ end }}
+</feed>

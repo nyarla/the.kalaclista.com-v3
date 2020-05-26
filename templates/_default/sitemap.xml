@@ -1,0 +1,13 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {{ range $page := where .Pages.ByDate.Reverse ".IsPage" true }}
+  {{ $lastmod := $page.Date }}
+  {{ if not $page.Lastmod.IsZero }}
+    {{ $lastmod = $page.Lastmod }}
+  {{ end }}
+    <url>
+      <loc>{{ $page.Permalink }}</loc>
+      <lastmod>{{ $lastmod.Format "2006-01-02T15:04:05-07:00" }}</lastmod>
+    </url>
+  {{ end }}
+</urlset>

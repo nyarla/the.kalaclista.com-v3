@@ -1,5 +1,4 @@
-{{ $args := . }}
-{{ $context := (dict "Site" (index $args 0) "Page" (index $args 1)) }}
+{{ $context := . }}
 {{ $section := (partial "data/section.html.html" $context | unmarshal).section }}
 
 {{ $data := dict }}
@@ -18,11 +17,21 @@
 
     {{ $data = merge $data (dict "type" "WebSite") }}
     {{ $data = merge $data (dict "subtype" "WebPage") }}
+  {{ else if eq $section "tags" }}
+    {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
+    {{ $data = merge $data (dict "name" .Site.Params.text.home.title) }}
+    {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
+    {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
+
+    {{ $data = merge $data (dict "title" (printf "タグ：%s" .Data.Term)) }}
+
+    {{ $data = merge $data (dict "type" "WebSite") }}
+    {{ $data = merge $data (dict "subtype" "WebPage") }}
   {{ else if eq $section "notfound" }}
     {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "name" .Site.Params.text.notfound.name) }}
-    {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
-    {{ $data = merge $data (dict "message" (.Site.Parms.text.notfound.message | markdownify)) }}
+    {{ $data = merge $data (dict "description" (replace .Site.Params.text.notfound.description "<br>" "")) }}
+    {{ $data = merge $data (dict "message" (.Site.Params.text.notfound.message | markdownify)) }}
 
     {{ $data = merge $data (dict "title" .Site.Params.text.notfound.title) }}
      

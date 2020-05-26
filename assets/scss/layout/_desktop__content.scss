@@ -50,7 +50,8 @@
 
       padding-left: 1em;
 
-      &.p-content--archives {
+      &.p-content--archives,
+      &.p-content--tags {
         margin-top: 7em;
       }
     }
@@ -227,7 +228,8 @@
     }
   }
 }
-.content__main--search {
+.content__main--search,
+.content__main--notfound {
   & > .content__search {
     margin: 6em 0;
 

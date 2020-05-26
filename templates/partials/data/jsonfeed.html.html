@@ -1,0 +1,33 @@
+{{ $author := dict "name" "OKAMURA Naoki" }}
+{{ $author = merge $author (dict "url" "https://the.kalaclista.com/nyarla/") }}
+{{ $author = merge $author (dict "avatar" "https://the.kalaclista.com/assets/avatar.svg") }}
+
+{{ $section := (partial "data/section.html.html" . | unmarshal).section }}
+{{ $meta := partial "data/meta.html.html" . | unmarshal }}
+
+{{ $home := "https://the.kalaclista.com/" }}
+
+{{ if ne $section "home" }}
+  {{ $home = printf "%s%s/" $home $section }}
+{{ end }}
+
+{{ $feed := dict "version" "https://jsonfeed.org/version/1" }}
+{{ $feed = merge $feed (dict "title" $meta.title)  }}
+{{ $feed = merge $feed (dict "description" $meta.description)  }}
+{{ $feed = merge $feed (dict "home_page_url" $home) }}
+{{ $feed = merge $feed (dict "feed_url" (absURL (printf "%sjsonfeed.json" $home)))}}
+{{ $feed = merge $feed (dict "icon" (absURL "/apple-touch-icon.png")) }}
+{{ $feed = merge $feed (dict "author" $author) }}
+
+{{ $src := where .Site.RegularPages.ByDate.Reverse ".Type" "!=" "pages" }}
+{{ if ne $section "home" }}
+  {{ $src = .Pages.ByDate.Reverse }}
+{{ end }}
+
+{{ $pages := slice }}
+
+{{ range $page := first 15 $src }}
+  {{ $pages = $pages | append (partial "data/content.html.html" $page | unmarshal) }}
+{{ end }}
+
+{{ merge $feed (dict "items" $pages) | jsonify }}

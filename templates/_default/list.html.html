@@ -11,6 +11,8 @@
     <main class="content__main content__main--{{ $section }}">
       {{ if eq $section "home" }}
         {{ partial "pages/home.html.html" . }}
+      {{ else if eq $section "tags" }}
+        {{ partial "pages/tags.html.html" . }}
       {{ else if or (eq $section "posts") }}
         {{ partial "pages/posts.html.html" . }}
       {{ else if or (eq $section "echos") }}

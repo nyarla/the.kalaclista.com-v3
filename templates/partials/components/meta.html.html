@@ -2,8 +2,6 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<link rel="canonical" href="https://the.kalaclista.com{{ .Page.RelPermalink }}">
-
 <link rel="shortcut icon" href="{{ absURL "/favicon.ico" }}">
 <link rel="icon" href="{{ absURL "/favicon.ico" }}" type="image/x-icon">
 <link rel="apple-touch-icon" size="180x180" href="{{ absURL "/apple-touch-icon.png" }}">
@@ -43,9 +41,9 @@
         href="{{ absURL "jsonfeed.json" }}">
 {{ end }}
 
-{{ $meta := partial "data/meta.html.html" (slice .Site .Page) | unmarshal }}
+{{ $meta := partial "data/meta.html.html" . | unmarshal }}
 
-{{ if .Page.IsPage }}
+{{ if or .Page.IsPage (eq $section "tags") }}
 <title>{{ $meta.title }} - {{ $meta.subtitle }}</title>
 {{ else }}
 <title>{{ $meta.subtitle }}</title>
@@ -53,13 +51,15 @@
 
 <meta name="description" content="{{ $meta.description }}">
 
+{{ if ne $section "notfound" }}
+<link rel="canonical" href="https://the.kalaclista.com{{ .Page.RelPermalink }}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@kalaclista">
 <meta name="twitter:creator" content="@kalaclista">
 
 <meta property="og:profile:first_name" content="Naoki">
 <meta property="og:profile:last_name" content="OKAMURA">
-{{ if .Page.IsPage }}
+{{ if or .Page.IsPage (eq $section "tags") }}
 <meta property="og:site_title" content="{{ $meta.subtitle }}">
 <meta property="og:title" content="{{ $meta.title }}">
 {{ else }}
@@ -69,7 +69,7 @@
 <meta property="og:image" content="{{ absURL "/apple-touch-icon.png" }}">
 <meta property="og:url" content="{{ .Page.Permalink }}">
 <meta property="og:section" content="{{ $section }}">
-{{ if .Page.IsPage }}
+{{ if or .Page.IsPage (eq $section "tags") }}
   <meta property="og:type" content="{{ $meta.subtype }}">
 {{ else }}
   <meta property="og:type" content="{{ $meta.type }}">
@@ -80,5 +80,7 @@
 {{ end }}
 
 <script type="application/json+ld">
-{{ partial "data/jsonld.html.html" (slice .Site .Page) | unmarshal | jsonify }}
+{{ partial "data/jsonld.html.html" . | unmarshal | jsonify }}
 </script>
+
+{{ end }}
