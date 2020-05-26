@@ -11,7 +11,7 @@ defaultContentLanguage: ja
 layoutDir: templates
 assetDir: assets
 publishDir: dist
-contentDir: src
+contentDir: src/content
 
 # URL
 # ===

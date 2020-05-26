@@ -15,10 +15,10 @@
 @import "object/component/link";
 @import "object/component/rounded";
 
-@media (min-width: 70em) {
+@media (min-width: 1120px) {
   @import "layout/desktop";
 }
 
-@media (max-width: 70em) {
+@media (max-width: 1119px) {
   @import "layout/mobile";
 }
