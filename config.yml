@@ -118,38 +118,38 @@ params:
     home:
       label: ホーム
       title: カラクリスタ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Web サイトです。
+      description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』の Web サイトです。
     posts:
       label: ブログ
       title: カラクリスタ・ブログ
       name: ブログ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の個人ブログです。
+      description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』の個人ブログです。
     echos:
       label: 雑記
       title: カラクリスタ・エコーズ
       name: エコーズ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』のチラシの裏っぽいモノ。
+      description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』のチラシの裏っぽいモノ。
     notes:
       label: ノート
       title: カラクリスタ・ノート
       name: ノート
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』のまとめ記事的なノートです。
+      description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』のまとめ記事的なノートです。
     search:
       label: 検索
       title: カラクリスタ・サーチ
       name: サーチ
-      description: この  Web サイトの中身を検索します。なお Google Custom Search Engine 製。
+      description: この  Web サイトの中身を検索します。<br>なお Google Custom Search Engine 製。
       message: とは言え、検索だけですべての記事が見付かるかどうは微妙なところが……。
     archives:
       label: 過去ログ
       title: カラクリスタ・アーカイブ
       name: アーカイブ
-      description: 『輝かしい青春』なんて失かった方の『にゃるら』の Webサイトの過去ログです。
+      description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』の Webサイトの過去ログです。
     notfound:
       title: カラクリスタ・イズ・ノット・ファウンド
       name: イズ・ノット・ファウンド
-      description: "いわゆる 404 Page not Found。ページが見付かりません。"
-      message: 記事などが行方不明です。もしかすると検索すると見付かるかもしれません。
+      description: "いわゆる 404 Page not Found。<br>ページが見付かりません。"
+      message: 記事などが行方不明です。<br>もしかすると検索すると見付かるかもしれません。
     twitter:
       label: 小鳥
     note:

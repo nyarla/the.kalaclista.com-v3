@@ -1,0 +1,68 @@
+@import "../object/utility/position";
+@import "../object/utility/decoration";
+
+.content__header {
+  & > .header__avatar {
+    --Object-Hexicon-Size: 48px;
+    display: block;
+    width: calc(32px+0.4em);
+    margin: 6em auto 1.5em auto;
+  }
+
+  & > .header__title {
+    margin-bottom: 4em;
+    font-size: 1em;
+    text-align: center;
+
+    & > * {
+      display: inline-block;
+      transform: scaleY(1.5);
+      font-family: serif;
+      letter-spacing: -0.1727em;
+      color: $color-gray-darkest;
+    }
+  }
+
+  & > p {
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 1.414em;
+  }
+
+  & > .u-container--absolute {
+    position: static;
+  }
+
+  & > .header__sections {
+    & > a.current {
+      @include u-container--relative;
+      &::before {
+        @include u-decoration--container;
+        width: 3px;
+        top: 0.5em;
+        bottom: 0.365em;
+        left: -0.5em;
+        border-radius: 3px;
+        background-color: $color-lime-dark;
+      }
+    }
+  }
+  & > .header__sections,
+  & > .header__about {
+    line-height: 2em;
+    text-align: center;
+
+    & > a {
+      display: inline-block;
+      margin: 0.25em 0.5em;
+    }
+
+    & > a[href*="notes"],
+    & > a[href*="nyarla"] {
+      &::after {
+        display: block;
+        content: "";
+      }
+    }
+  }
+}

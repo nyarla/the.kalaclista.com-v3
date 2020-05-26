@@ -1,0 +1,264 @@
+.content__main {
+  max-width: 40.5em;
+  margin: 0 auto;
+
+  & > .content__summary {
+    clear: both;
+    margin: 4em 0;
+    & > a:first-child {
+      text-decoration: none;
+
+      & > h1 {
+        font-size: 1.6em;
+        color: $color-gray-darkest;
+      }
+
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        & > h1 {
+          text-decoration: underline;
+        }
+      }
+
+      & > p {
+        font-size: 0.9em;
+        line-height: 1.414em;
+      }
+    }
+
+    & > a:first-child + a {
+      float: right;
+    }
+    & > a:first-child + a,
+    & > p {
+      font-size: 0.9em;
+      line-height: 1em;
+    }
+  }
+
+  & > .content__entry {
+    display: flex;
+    flex-direction: column;
+    margin: 4em 0;
+
+    & > a:first-child > {
+      order: 1;
+      & h1 {
+        font-size: 1.6em;
+      }
+    }
+
+    & > a[href*="archives"] {
+      order: 6;
+      display: block;
+      margin: 1em 0;
+      text-align: right;
+      font-size: 0.9em;
+    }
+
+    & > nav {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.9em;
+
+      & > .stack {
+        text-align: right;
+        margin: 1em 0;
+        order: 2;
+        & > a {
+          display: inline-block;
+          margin: 0.5em 0.075em;
+        }
+      }
+
+      & > .tags {
+        order: 3;
+        text-align: right;
+        & > a {
+          display: inline-block;
+          margin: 0 0.5em 0.7em 0;
+
+          &::before {
+            display: inline;
+            content: "#";
+          }
+        }
+      }
+
+      &.adsense {
+        order: 1;
+      }
+    }
+
+    & > section {
+      order: 3;
+      font-size: 0.9em;
+
+      & h1 {
+        font-size: 1.5em;
+      }
+      & h2 {
+        font-size: 1.4em;
+      }
+      & h3 {
+        font-size: 1.3em;
+      }
+      & h4 {
+        font-size: 1.2em;
+      }
+      & h5 {
+        font-size: 1.1em;
+      }
+      & h6 {
+        font-size: 1em;
+      }
+    }
+
+    & > .share {
+      margin-top: 2em;
+      order: 4;
+
+      & > a {
+        display: block;
+        font-size: 0.9em;
+        margin-bottom: 0.75em;
+      }
+    }
+
+    & > .comment {
+      order: 5;
+      & > a {
+        font-size: 0.8em;
+        line-height: 1.414em;
+      }
+    }
+  }
+
+  & > .subscribe {
+    text-align: center;
+
+    & > h1 {
+      font-size: 1.2em;
+    }
+
+    & > nav > a {
+      display: block;
+      margin: 0.75em 0;
+    }
+  }
+
+  & > .author {
+    margin-top: 4em;
+    padding-top: 2em;
+    @include u-container--relative;
+
+    &::before {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+    }
+
+    & > a:first-child {
+      display: block;
+      float: none;
+      width: 64px;
+      height: 64px;
+      border-radius: 3px;
+      margin: 0 auto;
+
+      & > img {
+        display: block;
+        width: 64px;
+        height: 64px;
+      }
+    }
+
+    & > h1,
+    & > h2 {
+      margin: 1em 0;
+      text-align: center;
+    }
+    & > nav {
+      text-align: center;
+    }
+    & > nav > a {
+      display: inline-block;
+      margin: 0 0.25em 0 0;
+      &::before {
+        left: -0.3em;
+      }
+    }
+
+    & > nav,
+    & > section {
+      margin: 1em 0;
+    }
+  }
+
+  & > .navigation--archive {
+    text-align: right;
+    margin: 3em 0;
+    & > p::before {
+      display: inline;
+      content: "\1F449";
+    }
+  }
+  & > .navigation--paginate {
+    height: 1em;
+    margin: 3em 0;
+    & a {
+      display: block;
+
+      &.navigation__prev {
+        float: left;
+      }
+
+      &.navigation__next {
+        float: right;
+      }
+    }
+  }
+}
+
+.content__main--archives {
+  & > .content__entry > .p-content {
+    & dd ul li {
+      margin: 0.25em 0;
+    }
+    & dd ul li a {
+      word-break: break-all;
+    }
+  }
+}
+
+.content__main--search,
+.content__main--notfound {
+  & > .content__search {
+    margin: 2em 0;
+    & .gsc-control-cse {
+      padding: 0;
+    }
+    & .gsc-search-box-tools .gsc-search-box .gsc-input {
+      background-color: $color-gray-brightest;
+    }
+
+    & .gsc-control-cse .gs-result div.gs-title {
+      text-decoration: none;
+    }
+
+    & .gsc-control-cse .gs-result a.gs-title {
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -18,3 +18,7 @@
 @media (min-width: 70em) {
   @import "layout/desktop";
 }
+
+@media (max-width: 70em) {
+  @import "layout/mobile";
+}

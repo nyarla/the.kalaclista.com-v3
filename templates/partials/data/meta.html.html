@@ -7,6 +7,7 @@
     {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "name" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
+    {{ $data = merge $data (dict "description_html" (.Site.Params.text.home.description | safeHTML)) }}
     {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
 
     {{ if .Page.IsPage }}
@@ -21,6 +22,7 @@
     {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "name" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "description" (replace .Site.Params.text.home.description "<br>" "")) }}
+    {{ $data = merge $data (dict "description_html" (.Site.Params.text.home.description | safeHTML)) }}
     {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
 
     {{ $data = merge $data (dict "title" (printf "タグ：%s" .Data.Term)) }}
@@ -31,6 +33,7 @@
     {{ $data = merge $data (dict "subtitle" .Site.Params.text.home.title) }}
     {{ $data = merge $data (dict "name" .Site.Params.text.notfound.name) }}
     {{ $data = merge $data (dict "description" (replace .Site.Params.text.notfound.description "<br>" "")) }}
+    {{ $data = merge $data (dict "description_html" (.Site.Params.text.notfound.description | safeHTML))}}
     {{ $data = merge $data (dict "message" (.Site.Params.text.notfound.message | markdownify)) }}
 
     {{ $data = merge $data (dict "title" .Site.Params.text.notfound.title) }}
@@ -41,6 +44,7 @@
     {{ $data = merge $data (dict "subtitle" (index .Site.Params.text $section).title) }}
     {{ $data = merge $data (dict "name" (index .Site.Params.text $section).name) }}
     {{ $data = merge $data (dict "description" (replace (index .Site.Params.text $section).description "<br>" "")) }}
+    {{ $data = merge $data (dict "description_html" ((index .Site.Params.text $section).description | safeHTML)) }}
     
     {{ if eq $section "search" }}
       {{ $data = merge $data (dict "message" (.Site.Params.text.search.message | markdownify)) }}
@@ -56,6 +60,7 @@
     {{ $data = merge $data (dict "subtitle" (index .Site.Params.text $section).title) }} 
     {{ $data = merge $data (dict "name" (index .Site.Params.text $section).name) }}
     {{ $data = merge $data (dict "description" (replace (index .Site.Params.text $section).description "<br>" "")) }}
+    {{ $data = merge $data (dict "description_html" ((index .Site.Params.text $section).description | safeHTML)) }}
     {{ $data = merge $data (dict "message" (.Site.Params.text.fallback.message | markdownify)) }}
 
     {{ if .Page.IsPage }}

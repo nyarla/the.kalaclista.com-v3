@@ -23,7 +23,7 @@
     {{ end }}
   </h1>
 
-  <p class="header__description">{{ $data.description | safeHTML }}</p>
+  <p class="header__description">{{ $data.description_html | safeHTML }}</p>
   <p class="header__message">{{ $data.message | safeHTML }}</p>
 
   <nav class="header__sections u-container--absolute">

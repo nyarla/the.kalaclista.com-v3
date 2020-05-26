@@ -80,7 +80,9 @@
       }
     }
   }
-
+  & > p > br {
+    display: none;
+  }
   & > .header__about {
     top: 4.125em;
     right: 0;
