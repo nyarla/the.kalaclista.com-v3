@@ -5,7 +5,7 @@
     "serve": "yarn scss && env NODE_ENV='development' hugo serve -b 'http://localhost:1313'",
     "build": "yarn scss && env NODE_ENV='production' hugo -b 'https://the.kalaclista.com' --minify",
     "test": "yarn scss && yarn build && mocha test/*/*.test.js",
-    "release": "rm -rf dist && yarn build && firebase deploy --only=hosting"
+    "release": "rm -rf dist && yarn build && firebase --project kalaclista-website deploy --only=hosting"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
