@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "scss": "cp node_modules/normalize.css/normalize.css assets/scss/foundation/_normalize.scss",
-    "serve": "yarn scss && env NODE_ENV='development' hugo serve -b 'http://localhost:1313'",
+    "serve": "yarn scss && env NODE_ENV='development' hugo serve -b 'http://localhost:1313' --bind 0.0.0.0",
+    "check": "yarn scss && env NODE_ENV='development' hugo serve -b 'http://192.168.1.200:10080' --bind 0.0.0.0 --port 10080",
     "build": "yarn scss && env NODE_ENV='production' hugo -b 'https://the.kalaclista.com' --minify",
     "test": "yarn scss && yarn build && mocha test/*/*.test.js",
     "release": "rm -rf dist && yarn build && firebase --project kalaclista-website deploy --only=hosting"

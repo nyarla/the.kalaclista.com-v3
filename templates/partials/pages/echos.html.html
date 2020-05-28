@@ -5,7 +5,6 @@
     <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
     <nav>
     {{ partial "components/stack.html.html" . }}
-    {{ partial "components/adsense.html.html" . }}
     </nav>
     <section class="p-content">
       {{ $data.content_html | safeHTML }}
