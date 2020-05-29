@@ -84,3 +84,43 @@
 </script>
 
 {{ end }}
+
+{{ if and (not .Site.IsServer) (default true .Page.Params.ads) }}
+<script defer async>
+  document.addEventListener('onload', function () {
+    const loader = document.createElement('script');
+    
+    loader.setAttribute('defer', 'defer');
+    loader.setAttribute('async', 'async');
+    loader.setAttribute('data-ad-client', 'ca-pub-1273544194033160');
+    loader.setAttribute('src', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+
+    document.getElementsByTagName('head')[0].appendChild(loader);
+  });
+</script>
+{{ end }}
+
+{{ if not .Site.IsServer }}
+<script defer async>
+  document.addEventListener('onload', function () {
+    const loader = document.createElement('script');
+    
+    loader.setAttribute('defer', 'defer');
+    loader.setAttribute('async', 'async');
+    loader.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=UA-158600592-1');
+
+    document.getElementsByTagName('head')[0].appendChild(loader);
+  });
+
+  const section = '{{ $section }}';
+  const url = '{{ .Page.Permalink }}';
+
+  window.dataLayer = window.dataLayer || [];
+  
+  function t() { window.dataLayer.push(arguments) }
+
+  t('js', new Date());
+  t('config', 'UA-158600592-1', { 'anonymize_ip': true });
+  t('config', 'UA-158600592-1');
+</script>
+{{ end }}

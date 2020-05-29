@@ -1,17 +1,25 @@
 <aside class="share">
-  <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text={{ .Title }}%0D%0A{{ .Permalink }}" class="share__twitter c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Twitter', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer"
+      href="https://twitter.com/intent/tweet?text={{ .Title }}%0D%0A{{ .Permalink }}" class="share__twitter c-link--no-decoration">
     <img src="{{ absURL "/assets/twitter.svg" }}" width="16" height="16" alt="Twitter">
     でつぶやく
   </a>
-  <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&t={{ .Title }}" class="share__facebook c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Facebook', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer"
+      href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&t={{ .Title }}" class="share__facebook c-link--no-decoration">
     <img src="{{ absURL "/assets/facebook.svg" }}" width="16" height="16" alt="Facebook">
     に共有
   </a>
-  <a target="_blank" rel="noreferrer" href="https://pinboard.in/add?next=same&url={{ .Permalink }}&title={{ .Title }}" class="share__pinboard c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Pinboard', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer"
+      href="https://pinboard.in/add?next=same&url={{ .Permalink }}&title={{ .Title }}" class="share__pinboard c-link--no-decoration">
     <img src="{{ absURL "/assets/pinboard.svg" }}" width="16" height="16" alt="Pinboard">
     でブックマーク
   </a>
-  <a target="_blank" rel="noreferrer" href="https://b.hatena.ne.jp/add?mode=confirm&url={{ .Permalink }}&title={{ .Title }}" class="share__hatena-bookmark c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'HatenaBookmark', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer" 
+      href="https://b.hatena.ne.jp/add?mode=confirm&url={{ .Permalink }}&title={{ .Title }}" class="share__hatena-bookmark c-link--no-decoration">
     <img src="{{ absURL "/assets/hatena-bookmark.svg" }}" width="16" height="16" alt="はてなブックマーク">
     でブックマーク
   </a>

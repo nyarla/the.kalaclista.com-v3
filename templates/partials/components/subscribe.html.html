@@ -5,7 +5,9 @@
     よかったら購読しませんか？
   </h1>
   <nav>
-    <a href="{{ absURL (printf "/%s/atom.xml" $section) }}">{{ (index .Site.Params.text $section).title }}を購読する</a>
-    <a href="{{ absURL "/atom.xml" }}">{{ .Site.Params.text.fallback.title }}全体を購読する</a>
+    <a onclick="t('event', 'subscribe', { method: '{{ $section }}', content_type: section, content_id: url })"
+      href="{{ absURL (printf "/%s/atom.xml" $section) }}">{{ (index .Site.Params.text $section).title }}を購読する</a>
+    <a onclick="t('event', 'subscribe', { method: 'home', content_type: section, content_id: url })"
+      href="{{ absURL "/atom.xml" }}">{{ .Site.Params.text.fallback.title }}全体を購読する</a>
   </nav>
 </aside>

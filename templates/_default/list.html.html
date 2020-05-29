@@ -2,10 +2,8 @@
 <html lang="ja">
   <head prefix="og: http://ogp.me/ns# website: http://ogp.me/ns/website#">
     {{ partial "components/meta.html.html" . }}
-    <script data-ad-client="ca-pub-1273544194033160" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
   <body>
-    {{ partial "components/analytics.html.html" . }}
     {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
     {{ partial "components/header.html.html" . }}
 

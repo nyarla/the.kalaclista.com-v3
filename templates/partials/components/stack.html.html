@@ -1,14 +1,22 @@
 <aside class="stack">
-  <a target="_blank" rel="noreferrer" href="https://pinboard.in/add?next=same&url={{ .Permalink }}&title={{ .Title }}" class="stack__pinboard c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Pinboard', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer" 
+      href="https://pinboard.in/add?next=same&url={{ .Permalink }}&title={{ .Title }}" class="stack__pinboard c-link--no-decoration">
     <img width="16" height="16" src="{{ absURL "/assets/pinboard.svg" }}" alt="Pinboard">に追加
   </a>
-  <a target="_blank" rel="noreferrer" href="https://www.instapaper.com/edit?url={{ .Permalink }}&title={{ .Title }}" class="stack__instapaper c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Instapaper', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer" 
+      href="https://www.instapaper.com/edit?url={{ .Permalink }}&title={{ .Title }}" class="stack__instapaper c-link--no-decoration">
     <img width="16" height="16" src="{{ absURL "/assets/instapaper.svg" }}" alt="Instapaper">に追加
   </a>
-  <a target="_blank" rel="noreferrer" href="https://getpocket.com/edit?url={{ .Permalink }}&title={{ .Title  }}" class="stack__pocket c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'Pocket', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer"
+      href="https://getpocket.com/edit?url={{ .Permalink }}&title={{ .Title  }}" class="stack__pocket c-link--no-decoration">
     <img width="16" height="16" src="{{ absURL "/assets/next.svg" }}" alt="Pocket">に追加
   </a>
-  <a target="_blank" rel="noreferrer" href="https://b.hatena.ne.jp/add?mode=confirm&url={{ .Permalink }}&title={{ .Title }}" class="stack__hatena-bookmark c-link--no-decoration">
+  <a  onclick="t('event', 'share', { method: 'HatenaBookmark', content_type: section, content_id: url })"
+      target="_blank" rel="noreferrer"
+      href="https://b.hatena.ne.jp/add?mode=confirm&url={{ .Permalink }}&title={{ .Title }}" class="stack__hatena-bookmark c-link--no-decoration">
     <img width="16" height="16" src="{{ absURL "/assets/hatena-bookmark.svg" }}" alt="はてなブックマーク">に追加
   </a>
 </aside>

@@ -4,7 +4,6 @@
     {{ partial "components/meta.html.html" . }}
   </head>
   <body>
-    {{ partial "components/analytics.html.html" . }}
     {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
     {{ partial "components/header.html.html" . }}
 
