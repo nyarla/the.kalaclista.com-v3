@@ -7,7 +7,7 @@
     {{ partial "components/stack.html.html" . }}
     {{ with .Page.Params.tags }}
     <aside class="tags">
-    {{ range $tag := . }}
+    {{ range $tag := sort . }}
     <a href="{{ absURL (printf "/tags/%s/" $tag) }}">{{ $tag }}</a>
     {{ end }}
     </aside>
