@@ -85,32 +85,35 @@
 
 {{ end }}
 
-{{ if and (not .Site.IsServer) (default true .Page.Params.ads) }}
-<script defer async>
-  document.addEventListener('onload', function () {
-    const loader = document.createElement('script');
-    
-    loader.setAttribute('defer', 'defer');
-    loader.setAttribute('async', 'async');
-    loader.setAttribute('data-ad-client', 'ca-pub-1273544194033160');
-    loader.setAttribute('src', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
-
-    document.getElementsByTagName('head')[0].appendChild(loader);
-  });
-</script>
-{{ end }}
-
 {{ if not .Site.IsServer }}
-<script defer async>
-  document.addEventListener('onload', function () {
+<script async>
+  let isScriptLoaded = false;
+  const events = 'mousemove mousedown scroll touchevent'.split(' ');
+
+  function scriptLoader(url) {
     const loader = document.createElement('script');
     
-    loader.setAttribute('defer', 'defer');
     loader.setAttribute('async', 'async');
-    loader.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=UA-158600592-1');
+    loader.setAttribute('src', url);
 
-    document.getElementsByTagName('head')[0].appendChild(loader);
-  });
+    return loader;
+  }
+
+  function onLoad() {
+    if (! isScriptLoaded) {
+      isScriptLoaded = true;
+      events.forEach(function (ev) { document.removeEventListener(ev, onLoad) });
+      
+      {{ if default true .Page.Params.tags }}
+      const adsLoader = scriptLoader('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+      adsLoader.setAttribute('data-ad-client', 'ca-pub-1273544194033160');
+      document.body.appendChild(adsLoader);
+      {{ end }}
+      document.body.appendChild(scriptLoader('https://www.googletagmanager.com/gtag/js?id=UA-158600592-1'));
+    }
+  }
+
+  events.forEach(function (ev) { document.addEventListener(ev, onLoad) });
 
   const section = '{{ $section }}';
   const url = '{{ .Page.Permalink }}';
