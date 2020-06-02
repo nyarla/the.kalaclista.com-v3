@@ -98,12 +98,13 @@
   }
 
   & .content__card--shop,
+  & .content__card--shopcard,
   & .content__card--web {
     @include u-container--relative;
     margin-right: 1em;
     margin-left: 1em;
 
-    &::after {
+    &::before {
       @include u-decoration__container;
       top: 0;
       bottom: 0;
@@ -114,7 +115,7 @@
   }
 
   & .content__card--shop {
-    &::after {
+    &::before {
       background-color: $color-lime-dark;
     }
 
@@ -146,12 +147,71 @@
     }
   }
 
+  & .content__card--shopcard {
+    &::before {
+      background-color: $color-lime-dark;
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+
+    & > p.thumbnail {
+      float: left;
+      margin: 0.25em 0.5em;
+      & img {
+        border: 3px solid $color-gray-bright;
+        border-radius: 3px;
+      }
+    }
+
+    & > h1 {
+      margin-left: 272px;
+      padding-left: 1rem;
+      margin-bottom: 1em;
+
+      & > a {
+        display: block;
+      }
+    }
+
+    & > nav {
+      margin-left: 272px;
+
+      & > a {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 1em;
+        padding: 0.5em 1em;
+        text-align: center;
+        border-radius: 3px;
+        border: 3px solid rgba(255, 255, 255, 0.31);
+
+        &[href*="amazon.co.jp"] {
+          background-color: #ff9900;
+          color: #000;
+        }
+        &[href*="rakuten.co.jp"] {
+          background-color: #bf0000;
+          color: #fff;
+        }
+        &[href*="gearbest.com"] {
+          background-color: #ffda00;
+          color: #000;
+        }
+      }
+    }
+  }
+
   & .content__card--web {
     @include u-container--relative;
     margin-left: 1em;
     margin-right: 1em;
 
-    &::after {
+    &::before {
       background-color: $color-cyan-bright;
     }
 
@@ -214,5 +274,42 @@
 .p-content--home {
   & h1:first-child > img {
     width: 256px;
+  }
+}
+
+@media screen and (max-width: 1119px) {
+  .p-content {
+    & > .content__card--shopcard {
+      max-width: 288px;
+      margin: 1em auto;
+      &::before,
+      &::after {
+        position: static;
+        display: block;
+        border: none;
+        height: 3px;
+        width: 100%;
+        background-color: $color-lime-dark;
+        margin: 1em 0;
+      }
+
+      & > p.thumbnail {
+        float: none;
+        text-align: center;
+        margin: 0;
+      }
+
+      & > h1,
+      & > nav {
+        margin-left: 0;
+        padding-left: 0;
+
+        text-align: center;
+      }
+
+      & > nav > a {
+        margin: 1em 0;
+      }
+    }
   }
 }
