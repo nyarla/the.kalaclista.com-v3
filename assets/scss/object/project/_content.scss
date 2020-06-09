@@ -279,6 +279,13 @@
 
 @media screen and (max-width: 1119px) {
   .p-content {
+    & .content__image--gyazo {
+      & > a > img {
+        max-width: 100%;
+        border-radius: 6px;
+        border: 3px solid $color-gray-bright;
+      }
+    }
     & > .content__card--shopcard {
       max-width: 288px;
       margin: 1em auto;
