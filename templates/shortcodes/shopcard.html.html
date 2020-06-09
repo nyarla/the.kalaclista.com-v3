@@ -7,7 +7,7 @@
 {{ $amazon := $data.amazon }}
 {{ $gearbest := $data.gearbest }}
 
-{{ $rakuten := (printf "https://search.rakuten.co.jp/search/mall/%s/?sf=1&used=0&v=2" $query) }}
+{{ $rakuten := (printf "https://search.rakuten.co.jp/search/mall/%s/?sf=1&used=0&v=2" $data.rakuten) }}
 {{ $rakuten = (printf "https://hb.afl.rakuten.co.jp/hgc/0d591c80.1e6947ee.197d1bf7.7a323c41/?pc=%s" ($rakuten | urlize)) }}
 
 <figure class="content__card--shopcard">
@@ -15,7 +15,7 @@
   <h1><a href="{{ $amazon }}">{{ $title }}</a></h1>
   <nav>
     <a class="c-link--no-decoration" href="{{ $amazon }}">Amazon.co.jpで買う</a>
-    <a class="c-link--no-decoration" href="{{ $rakuten }}">楽天で探す</a>
-    <a class="c-link--no-decoration" href="{{ $gearbest }}">Gearbestで買う</a>
+    {{ with $data.rakuten }}<a class="c-link--no-decoration" href="{{ $rakuten }}">楽天で探す</a>{{ end }}
+    {{ with $data.gearbest }}<a class="c-link--no-decoration" href="{{ $gearbest }}">Gearbestで買う</a>{{ end }}
   </nav>
 </figure>
