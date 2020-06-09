@@ -17,7 +17,7 @@
   {{ partial "components/subscribe.html.html" . }}
   {{ partial "components/author.html.html" . }}
 {{ else }}
-{{ range $page := .Pages.ByDate.Reverse }}
+{{ range $page := sort .Pages ".Lastmod" "desc" }}
 {{ $data := partial "data/content.html.html" $page | unmarshal }}
 <section class="content__summary content__summary--entries u-clearfix">
  <a href="{{ $data.url }}">
