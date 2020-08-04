@@ -1,0 +1,30 @@
+{{ $src := . }}
+
+{{ $PRE := "<pre>[^<]+</pre>" }}
+{{ $CODE := "<code>[^<]+</code>" }}
+
+{{ $pre := slice }}
+{{ $code := slice }}
+
+{{ range $idx, $dest := findRE $PRE $src }}
+  {{ $pre = $pre | append $dest }}
+  {{ $src = replace $src $dest (printf "<!-- pre:%d -->" $idx) }}
+{{ end }}
+
+{{ range $idx, $dest := findRE $CODE $src }}
+  {{ $code = $code | append $dest }}
+  {{ $src = replace $src $dest (printf "<!-- code:%d -->" $idx) }}
+{{ end }}
+
+{{ $src = partial "functions/markup/inline.furigana.html.html" $src }}
+{{ $src = partial "functions/markup/inline.keyword.html.html" $src }}
+
+{{ range $idx, $dest := $code }}
+  {{ $src = replace $src (printf "<!-- code:%d -->" $idx) $dest }}
+{{ end }}
+
+{{ range $idx, $dest := $pre }}
+  {{ $src = replace $src (printf "<!-- pre:%d -->" $idx) $dest }}
+{{ end }}
+
+{{- $src | safeHTML -}}

@@ -1,0 +1,6 @@
+{{ $src := . }}
+
+{{ $src = partial "functions/markup/inline.html.html" . }}
+{{ $src = partial "functions/markup/block.html.html" $src }}
+
+{{- $src | safeHTML -}}

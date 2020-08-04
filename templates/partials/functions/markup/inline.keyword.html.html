@@ -1,0 +1,28 @@
+{{ $src := . }}
+
+{{ $RE := "\\[{2}[^/\\n\\]]+?\\]{2}" }}
+
+{{ $A := "<a.+>[^<]</a>" }}
+
+{{ $a := slice }}
+
+{{ range $idx, $dest := findRE $A $src }}
+  {{ $a = $a | append $dest }}
+  {{ $src = replace $src $dest (printf "<!-- a:%d -->" $idx) }}
+{{ end }}
+
+{{ range $tag := findRE $RE $src }}
+  {{ $kw := $tag }}
+  {{ $kw = replace  $kw "[[" "" }}
+  {{ $kw = replace  $kw "]]" "" }}
+
+  {{ $link := absURL (printf "/keyword/%s" (replace $kw " " "-")) }}
+
+  {{ $src = replace $src $tag (printf "<a class=\"keyword\" href=\"%s\">%s</a>" $link $kw)}}
+{{ end }}
+
+{{ range $idx, $dest := $a }}
+  {{ $src = replace $src (printf "<!-- a:%d -->" $idx) $dest }}
+{{ end }}
+
+{{- $src | safeHTML -}}

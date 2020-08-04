@@ -1,0 +1,17 @@
+@import "../utility/container";
+
+@mixin c-border__container {
+  @include u-container--relative;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+@mixin c-border__rouned($border-color) {
+  @include u-container__decoration;
+  top: 0;
+  bottom: 0;
+  left: -0.5em;
+  width: 3px;
+  background-color: $border-color;
+  border-radius: 3px;
+}

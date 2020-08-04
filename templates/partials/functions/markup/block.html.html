@@ -1,0 +1,18 @@
+{{ $src := . }}
+
+{{ $RE := "<pre><code[^>]+>[^<]+</code></pre>" }}
+{{ $TYPE := "data-lang=\"(embed:[^\"]+)\"" }}
+{{ $DATA := "\">([^<]+?)</code></pre>" }}
+
+{{ range $code := findRE $RE $src }}
+  {{ $type := replaceRE $TYPE "$1" (index (findRE $TYPE $code) 0)}}
+  {{ $data := replaceRE $DATA "$1" (index (findRE $DATA $code) 0) | htmlUnescape }}
+
+  {{ if hasPrefix $type "embed:" }}
+    {{ $type = strings.TrimPrefix "embed:" $type }}
+    {{ $src = replace $src $code (partial (printf "widgets/%s.html.html" $type) $data) }}
+  {{ end }}
+
+{{ end }}
+
+{{- $src | safeHTML -}}

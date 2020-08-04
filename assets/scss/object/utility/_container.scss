@@ -1,0 +1,13 @@
+@mixin u-container--relative {
+  position: relative;
+}
+
+@mixin u-container--absolute {
+  position: absolute;
+}
+
+@mixin u-container__decoration {
+  @include u-container--absolute;
+  display: block;
+  content: "";
+}

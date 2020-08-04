@@ -1,0 +1,7 @@
+{{ $src := . }}
+
+{{ $RE := "\\{([^|\\n]+?)[|]([^\\\\}\\n]+?)\\}" }}
+
+{{ $src = replaceRE $RE "<ruby>$1<rp>（</rp><rt>$2</rt><rp>）</rp></ruby>" $src }}
+
+{{- $src | safeHTML -}}
