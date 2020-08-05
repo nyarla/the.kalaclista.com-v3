@@ -1,0 +1,30 @@
+{{ $data := unmarshal . }}
+
+{{ $main := $data.main }}
+{{ $title := $data.title }}
+
+{{ $image := default "" $data.image }}
+
+<div class="content__card--item">
+  <figure>
+    {{ if ne $image "" }}
+      <p class="thumbnail">
+        {{ $image | safeHTML }}
+      </p>
+    {{ end }}
+
+    <figcaption>
+      <h1><a href="{{ $main }}">{{ $title }}</a></h1>
+    </figcaption>
+
+    <nav>
+      <ul>
+        {{ if $data.amazon }}<li><a href="{{ $data.amazon }}">Amazon.co.jp で探す</a></li>{{ end }}
+        {{ if $data.rakuten }}<li><a href="{{ $data.rakuten }}">楽天で探す</a></li>{{ end }}
+        {{ if $data.aliexpress }}<li><a href="{{ $data.aliexpress }}">Aliexpress で探す</a></li>{{ end }}
+        {{ if $data.gearbest }}<li><a href="{{ $data.gearbest }}">Gearbestで探す</a></li>{{ end }}
+        {{ if $data.banggood }}<li><a href="{{ $data.banggood }}">Banggoodで探す</a></li>{{ end }}
+      </ul>
+    </nav>
+  </figure>
+</div>

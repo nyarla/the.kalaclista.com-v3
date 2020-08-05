@@ -116,6 +116,67 @@
     }
   }
 
+  & .content__card--item {
+    display: block;
+    width: 256px;
+    @include c-border__container;
+    margin: 0 auto;
+
+    &::before,
+    &::after {
+      @include c-border__horizontal($color-lime-dark);
+    }
+
+    & > figure {
+      padding: 1em 0;
+      margin: 0;
+
+      & > .thumbnail {
+        text-align: center;
+        * img {
+          max-width: 160px;
+          max-height: 160px;
+        }
+      }
+
+      & > figcaption > h1 {
+        text-align: center;
+        font-size: 1.375em;
+      }
+
+      & > nav > ul {
+        margin: 0;
+      }
+
+      & > nav > ul > li {
+        margin-bottom: 0.5em;
+
+        &::before {
+          display: none;
+        }
+
+        & > a {
+          @include c-border__container;
+          &[href*="amazon.co.jp"]::before {
+            @include c-border__rouned(#ff9900);
+          }
+          &[href*="rakuten.co.jp"]::before {
+            @include c-border__rouned(#bf0000);
+          }
+          &[href*="aliexpress.com"]::before {
+            @include c-border__rouned(#ff4747);
+          }
+          &[href*="gearbest.com"]::before {
+            @include c-border__rouned(#ffda00);
+          }
+          &[href*="banggood.com"]::before {
+            @include c-border__rouned(#ff6e26);
+          }
+        }
+      }
+    }
+  }
+
   & .content__card--shop,
   & .content__card--shopcard,
   & .content__card--web {
