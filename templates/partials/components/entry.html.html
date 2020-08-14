@@ -21,9 +21,37 @@
   {{ end }}
   </aside>
 
+{{ if (default false $global.Page.Params.ads) }}
+  <aside class="ads">
+		<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-format="fluid"
+				 data-ad-layout-key="-gx-1+1w-2n-18"
+				 data-ad-client="ca-pub-1273544194033160"
+				 data-ad-slot="7658425566"></ins>
+		<script>
+				 (adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+  </aside>
+{{ end }}
+
   <section class="p-content">
     {{ $data.content_html | safeHTML }}
   </section>
+
+{{ if (default false $global.Page.Params.ads) }}
+  <aside class="ads">
+		<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-format="fluid"
+				 data-ad-layout-key="-gx-1+1w-2n-18"
+				 data-ad-client="ca-pub-1273544194033160"
+				 data-ad-slot="5004342069"></ins>
+		<script>
+				 (adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+  </aside>
+{{ end }}
 
   {{ if $global.Page.IsPage }}
     {{ partial "components/comment.html.html" $data }}

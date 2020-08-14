@@ -176,6 +176,21 @@ body {
       }
     }
   }
+
+  & > .ads {
+    @include c-border__container;
+    margin: 1em 0;
+
+    & > ins {
+      margin: 1em 0 !important;
+    }
+
+    &::before,
+    &::after {
+      @include c-border__horizontal($color-gray-bright);
+      position: static !important;
+    }
+  }
 }
 
 .content__subscribe {
