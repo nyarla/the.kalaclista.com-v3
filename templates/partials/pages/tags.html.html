@@ -1,7 +1,5 @@
 <article class="content__entry content__entry--tags">
-  <a href="{{ absURL (printf "/tags/%s/" .Data.Term) }}">
-    <h1>タグ：{{ .Data.Term }}</h1>
-  </a>
+  <h1><a href="{{ absURL (printf "/tags/%s/" .Data.Term) }}">タグ：{{ .Data.Term }}</a></h1>
   <section class="p-content p-content--tags">
     {{ $before := "" }}
     {{ $posts := slice }}

@@ -1,7 +1,7 @@
 {{ if .Page.IsPage }}
   {{ $data := partial "data/content.html.html" . | unmarshal }}
-  <article class="content__entry content__entry--{{ .Section }} u-clearfix">
-    <a href="{{ $data.url }}"><h1>{{ $data.title }}</h1></a>
+  <article class="content__entry content__entry--{{ .Section }}">
+    <h1><a href="{{ $data.url }}">{{ $data.title }}</a></h1>
     <section class="p-content p-content--home">
       {{ $data.content_html | safeHTML }}
     </section>
