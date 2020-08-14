@@ -1,0 +1,32 @@
+{{ $data := index . 0 }}
+{{ $global := index . 1 }}
+{{ $section := index . 2 }}
+
+<article class="content__entry content__entry--{{ $section }}">
+  <h1><a href="{{ $data.url }}">{{ $data.title }}</a></h1>
+  <aside>
+    <p class="content__entry--datetime">
+    投稿: <time datetime="{{ dateFormat "2006-01-02" $data.date_published }}"><a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}">{{ dateFormat "2006年1月2日" $data.date_published }}</a></time>
+    更新: <time datetime="{{ dateFormat "2006-01-02" $data.date_modified }}">{{ dateFormat "2006年1月2日" $data.date_modified }}</time>
+  </p>
+
+  {{ if $global.Page.IsPage }}
+  {{ with (sub (now).Unix (time $data.date_modified).Unix) }}
+    {{ if gt . (mul 86400 180) }}
+    <p class="content__entry--warnings">
+      この記事は最後に更新されてから 半年以上は更新されていません。
+    </p>
+    {{ end }}
+  {{ end }}
+  {{ end }}
+  </aside>
+
+  <section class="p-content">
+    {{ $data.content_html | safeHTML }}
+  </section>
+
+  {{ if $global.Page.IsPage }}
+    {{ partial "components/comment.html.html" $data }}
+  {{ end }}
+</article>
+

@@ -1,30 +1,11 @@
 {{ if .Page.IsPage }}
   {{ $data := partial "data/content.html.html" . | unmarshal }}
-  <article class="content__entry content__entry--{{ .Section }} u-clearfix">
-    <a href="{{ $data.url }}"><h1>{{ $data.title }}</h1></a>
-    <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
-    <nav>
-    {{ partial "components/stack.html.html" . }}
-    {{ with .Page.Params.tags }}
-    <aside class="tags">
-    {{ range $tag := sort . }}
-    <a href="{{ absURL (printf "/tags/%s/" $tag) }}">{{ $tag }}</a>
-    {{ end }}
-    </aside>
-    {{ end }}
-    </nav>
-    <section class="p-content">
-      {{ $data.content_html | safeHTML }}
-    </section>
-    {{ partial "components/share.html.html" . }}
-    {{ partial "components/comment.html.html" . }}
-  </article>
-
-  {{ partial "components/adsense.html.html" . }}
+  {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
+  {{ partial "components/entry.html.html" (slice $data . $section) }}
   {{ partial "components/subscribe.html.html" . }}
   {{ partial "components/author.html.html" . }}
 
-  <nav class="navigation--paginate u-clearfix">
+  <nav class="global__navigation--paginate">
     <p>
       {{ with .NextInSection }}
       <a href="{{ .Permalink }}" class="navigation__prev">前の記事</a>
@@ -38,26 +19,20 @@
 {{ else }}
 
 {{ $pager := .Paginate .Pages.ByDate.Reverse }}
-{{ range $page := $pager.Pages }}
-{{ $data := partial "data/content.html.html" $page | unmarshal }}
-<section class="content__summary content__summary--entries content__summary--{{ $page.Section }} u-clearfix">
- <a href="{{ $data.url }}">
-    <h1>{{ $data.title }}</h1>
-    <p>{{ (partial "data/summary.html.html" ($data.content_html | safeHTML | plainify) | unmarshal).summary }}</p>
-  </a>
-  <a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time>{{ dateFormat "2006年1月2日" $data.date }}</time></a>
-</section>
-{{ end }}
+  {{ range $page := $pager.Pages }}
+    {{ $data := partial "data/content.html.html" $page | unmarshal }}
+    {{ $section := (partial "data/section.html.html" $page | unmarshal).section }}
 
-<nav class="navigation--paginate u-clearfix">
-  <p>
-    {{ if $pager.HasPrev }}
-    <a href="{{ absURL $pager.Prev.URL }}" class="navigation__prev">前へ</a>
-    {{ end }}
-    {{ if $pager.HasNext }}
-    <a href="{{ absURL $pager.Next.URL }}" class="navigation__next">次へ</a>
-    {{ end }}
-  </p>
-</nav>
-
+    {{ partial "components/summary.html.html" (slice $data ($) $section) }}
+  {{ end }}
+  <nav class="global__navigation--paginate">
+    <p>
+      {{ if $pager.HasPrev }}
+      <a href="{{ absURL $pager.Prev.URL }}" class="navigation__prev">前へ</a>
+      {{ end }}
+      {{ if $pager.HasNext }}
+      <a href="{{ absURL $pager.Next.URL }}" class="navigation__next">次へ</a>
+      {{ end }}
+    </p>
+  </nav>
 {{ end }}

@@ -1,3 +1,5 @@
-.u-clearfix {
-  clear: both;
+@mixin clearfix($float) {
+  display: block;
+  content: "";
+  clear: $float;
 }

@@ -1,4 +1,4 @@
-.share {
+@mixin p-share {
   & > a {
     vertical-align: middle;
 
@@ -23,6 +23,20 @@
     background-color: #3b5998;
   }
   & > a.share__hatena-bookmark > img {
+    background-color: #009ff8;
+  }
+
+  & > a.stack__pinboard > img {
+    background-color: #0000e6;
+  }
+  & > a.stack__instapaper > img {
+    background-color: #000;
+  }
+  & > a.stack__pocket > img {
+    background-color: #ef4056;
+    transform: rotate(90deg);
+  }
+  & > a.stack__hatena-bookmark > img {
     background-color: #009ff8;
   }
 }

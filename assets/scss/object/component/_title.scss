@@ -1,0 +1,12 @@
+@mixin c-widget__title($size, $font) {
+  & > * {
+    display: inline-block;
+
+    font-size: $size;
+    font-family: $font;
+
+    letter-spacing: calc(#{$size} * -0.1727);
+
+    transform: scaleY(1.5);
+  }
+}

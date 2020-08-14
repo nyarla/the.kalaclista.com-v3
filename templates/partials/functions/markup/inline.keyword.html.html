@@ -16,9 +16,9 @@
   {{ $kw = replace  $kw "[[" "" }}
   {{ $kw = replace  $kw "]]" "" }}
 
-  {{ $link := absURL (printf "/keyword/%s" (replace $kw " " "-")) }}
+  {{ $link := absURL (printf "/notes/%s" (replace $kw " " "-")) }}
 
-  {{ $src = replace $src $tag (printf "<a class=\"keyword\" href=\"%s\">%s</a>" $link $kw)}}
+  {{ $src = replace $src $tag (printf "<a class=\"notes\" href=\"%s\">%s</a>" $link $kw)}}
 {{ end }}
 
 {{ range $idx, $dest := $a }}

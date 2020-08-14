@@ -1,0 +1,24 @@
+{{ $data := index . 0 }}
+{{ $global := index . 1 }}
+{{ $section := index . 2 }}
+
+<section class="content__summary content__summary--{{ $section }}">
+  <h1><a href="{{ $data.url }}" class="link--no-decoration">{{ $data.title }}</a></h1>
+  <aside>
+    <p class="content__summary--section">
+      <a href="{{ absURL (printf "/%s/" $section) }}" class="c-link--no-decoration">
+      {{ (index $global.Site.Params.text $section).label  }}
+      </a>
+    </p>
+    <p class="content__summary--datetime">
+      投稿: <time datetime="{{ dateFormat "2006-01-02" $data.date_published }}"><a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}">{{ dateFormat "2006年1月2日" $data.date_published }}</a></time>
+      更新: <time datetime="{{ dateFormat "2006-01-02" $data.date_modified }}">{{ dateFormat "2006年1月2日" $data.date_modified }}</time>
+    </p>
+  </aside>
+
+  <a href="{{ $data.url }}" class="content__summary--description p-content link--no-decoration">
+    <blockquote>
+      <p>{{ (partial "data/summary.html.html" ($data.content_html | safeHTML | plainify) | unmarshal).summary }}</p>
+    </blockquote>
+  </a>
+</section>

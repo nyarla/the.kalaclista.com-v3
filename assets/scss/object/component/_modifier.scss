@@ -6,7 +6,7 @@
   margin-right: 1em;
 }
 
-@mixin c-border__rouned($border-color) {
+@mixin c-border__left($border-color) {
   @include u-container__decoration;
   top: 0;
   bottom: 0;

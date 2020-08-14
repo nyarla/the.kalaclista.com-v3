@@ -1,24 +1,19 @@
-@import "foundation/normalize";
-@import "foundation/base";
-@import "foundation/chroma";
+@import "./foundation/normalize";
+@import "./foundation/chroma";
+@import "./foundation/link";
 
-@import "object/utility/clearfix";
-@import "object/utility/decoration";
-@import "object/utility/position";
+@import "layout/default";
 
-@import "object/project/content";
-@import "object/project/stack";
-@import "object/project/share";
-@import "object/project/author";
-@import "object/project/subscribe";
-
-@import "object/component/link";
-@import "object/component/rounded";
-
-@media (min-width: 1120px) {
-  @import "layout/desktop";
+@media (max-width: 69em) {
+  @import "layout/override";
 }
 
-@media (max-width: 1119px) {
+@media (max-width: 35em) {
   @import "layout/mobile";
+}
+
+@media (max-height: 45em) {
+  .global__header > .global__header--info {
+    position: static;
+  }
 }

@@ -8,22 +8,13 @@
   </article>
   {{ partial "components/author.html.html" . }}
 {{ else }}
+  {{ range $page := first 15 (where .Site.RegularPages.ByDate.Reverse ".Params.type" "!=" "pages") }}
+    {{ $data := partial "data/content.html.html" $page | unmarshal }}
+    {{ $section := (partial "data/section.html.html" $page | unmarshal).section }}
 
-{{ range $page := first 15 (where .Site.RegularPages.ByDate.Reverse ".Params.type" "!=" "pages") }}
-{{ $data := partial "data/content.html.html" $page | unmarshal }}
-<section class="content__summary content__summary--{{ $page.Section }} u-clearfix">
- <a href="{{ $data.url }}">
-    <h1>{{ $data.title }}</h1>
-    <p>{{ (partial "data/summary.html.html" ($data.content_html | safeHTML | plainify) | unmarshal).summary }}</p>
-  </a>
-  <a href="{{ absURL (printf "/%s/" $page.Section) }}" class="c-link--no-decoration">
-    {{ (index $.Site.Params.text $page.Section).label  }}
-  </a>
-  <p><a href="{{ absURL "/archives/" }}{{ dateFormat "#/2006/01/" $data.date }}"><time datetime="{{$data.date}}">{{ dateFormat "2006年1月2日" $data.date }}</time>に更新</a></p>
-</section>
-{{ end }}
-<nav class="navigation--archive u-clearfix">
-  <p><a href="{{ absURL "/archives/" }}">過去ログをもっと見る</a></p>
-</nav>
-
+    {{ partial "components/summary.html.html" (slice $data $.Site $section) }}
+  {{ end }}
+  <nav class="global__navigation--archives">
+    <p><a href="{{ absURL "/archives/" }}">過去ログをもっと見る</a></p>
+  </nav>
 {{ end }}

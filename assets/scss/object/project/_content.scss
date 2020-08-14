@@ -44,7 +44,7 @@
     @include c-border__container;
 
     &::before {
-      @include c-border__rouned($color-magenta-dark);
+      @include c-border__left($color-magenta-dark);
     }
   }
 
@@ -94,7 +94,7 @@
     @include c-border__container;
 
     &::before {
-      @include c-border__rouned($color-cyan-bright);
+      @include c-border__left($color-cyan-bright);
     }
 
     & > figure {
@@ -118,7 +118,6 @@
 
   & .content__card--item {
     display: block;
-    width: 256px;
     @include c-border__container;
     margin: 0 auto;
 
@@ -132,6 +131,11 @@
       margin: 0;
 
       & > .thumbnail {
+        width: 160px;
+        height: 160px;
+        float: left;
+        margin-right: 1em;
+
         text-align: center;
         * img {
           max-width: 160px;
@@ -139,8 +143,13 @@
         }
       }
 
+      &::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
       & > figcaption > h1 {
-        text-align: center;
         font-size: 1.375em;
       }
 
@@ -149,6 +158,7 @@
       }
 
       & > nav > ul > li {
+        display: inline-block;
         margin-bottom: 0.5em;
 
         &::before {
@@ -157,20 +167,22 @@
 
         & > a {
           @include c-border__container;
+          margin-left: 0.5em;
+          margin-right: 0.5em;
           &[href*="amazon.co.jp"]::before {
-            @include c-border__rouned(#ff9900);
+            @include c-border__left(#ff9900);
           }
           &[href*="rakuten.co.jp"]::before {
-            @include c-border__rouned(#bf0000);
+            @include c-border__left(#bf0000);
           }
           &[href*="aliexpress.com"]::before {
-            @include c-border__rouned(#ff4747);
+            @include c-border__left(#ff4747);
           }
           &[href*="gearbest.com"]::before {
-            @include c-border__rouned(#ffda00);
+            @include c-border__left(#ffda00);
           }
           &[href*="banggood.com"]::before {
-            @include c-border__rouned(#ff6e26);
+            @include c-border__left(#ff6e26);
           }
         }
       }

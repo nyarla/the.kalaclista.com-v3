@@ -1,0 +1,38 @@
+@import "./foundation/color";
+
+a {
+  &:link,
+  &:visited {
+    color: $color-gray-dark;
+  }
+
+  &:hover,
+  &:active {
+    color: $color-gray-darkest;
+  }
+}
+
+@media screen and (pointer: coarse) {
+  .link--no-decoration {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (pointer: fine) {
+  .link--no-decoration {
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}

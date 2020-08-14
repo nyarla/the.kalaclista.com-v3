@@ -7,6 +7,8 @@
 {{ $page = merge $page (dict "title" .Title) }}
 {{ $page = merge $page (dict "content_html" (partial "functions/markup/markup.html.html" .Content)) }}
 {{ $page = merge $page (dict "date" .Date) }}
+{{ $page = merge $page (dict "date_published" .Date) }}
+{{ $page = merge $page (dict "date_modified" .Lastmod) }}
 {{ $page = merge $page (dict "tags" (default (slice) .Params.tags)) }}
 
 {{ $page | jsonify }}

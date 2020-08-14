@@ -1,0 +1,56 @@
+@import "../../foundation/color";
+
+@mixin c-widget__avatar($size) {
+  display: inline-block;
+  position: relative;
+
+  height: calc(#{$size} + 4px);
+  width: calc(#{$size} + 4px);
+
+  line-height: $size;
+
+  &::before,
+  &::after,
+  & > * {
+    display: block;
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    bottom: 0.5em;
+    right: 0;
+
+    height: calc(#{$size} - (#{$size} / 3));
+    width: calc(#{$size} - (#{$size} / 3));
+
+    padding: 0 0.5em;
+
+    border-width: 1px 3px;
+    border-style: solid;
+    border-radius: 100%;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before {
+    transform: rotateZ(60deg);
+  }
+
+  &::after {
+    transform: rotateZ(-60deg);
+  }
+
+  &::after {
+    border-color: transparent $color-green-bright transparent
+      $color-magenta-bright;
+  }
+  &::before {
+    border-color: transparent $color-blue-bright transparent
+      $color-yellow-bright;
+  }
+  & > * {
+    border-color: transparent $color-cyan-bright transparent $color-red-bright;
+  }
+}

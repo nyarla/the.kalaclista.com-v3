@@ -1,6 +1,24 @@
-body {
-  margin: 1em;
+.content__subscribe > h1 > img {
+  display: none;
 }
 
-@import "./mobile_header";
-@import "./mobile_content";
+.content__author {
+  text-align: center;
+
+  & > a {
+    float: none;
+    display: inline-block;
+  }
+
+  & > h1,
+  & > section,
+  & > nav {
+    margin: 1em 0;
+  }
+
+  & > nav > a {
+    display: block;
+    width: 3em;
+    margin: 1em auto;
+  }
+}

@@ -58,6 +58,8 @@ markup:
     parser:
       attribute: false
       audoHeadingID: true
+    renderer:
+      unsafe: true
 
 related:
   threashold: 80
@@ -114,7 +116,7 @@ params:
   text:
     fallback:
       title: カラクリスタ
-      message: なお[インターネットコンテンツと化した『にゃるら』さんとは別の個体](https://the.kalaclista.com/notes/nyarla-is-not-nyalra/)です。
+      message: なお[クレイジーな方の<br>『にゃるら』さんとは別の個体](https://the.kalaclista.com/notes/nyarla-is-not-nyalra/)です。
     home:
       label: ホーム
       title: カラクリスタ
@@ -146,8 +148,8 @@ params:
       name: アーカイブ
       description: 『輝かしい青春』なんて失かった方の<br>『にゃるら』の Webサイトの過去ログです。
     notfound:
-      title: カラクリスタ・イズ・ノット・ファウンド
-      name: イズ・ノット・ファウンド
+      title: カラクリスタ？
+      name: ？
       description: "いわゆる 404 Page not Found。<br>ページが見付かりません。"
       message: 記事などが行方不明です。<br>もしかすると検索すると見付かるかもしれません。
     twitter:

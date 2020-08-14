@@ -1,13 +1,11 @@
 {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
-<aside class="subscribe p-content">
+<aside class="content__subscribe p-content">
   <h1>
     <img src="{{ absURL "/assets/feed.svg" }}" width="24" height="24">
     よかったら購読しませんか？
   </h1>
   <nav>
-    <a onclick="t('event', 'subscribe', { method: '{{ $section }}', content_type: section, content_id: url })"
-      href="{{ absURL (printf "/%s/atom.xml" $section) }}">{{ (index .Site.Params.text $section).title }}を購読する</a>
-    <a onclick="t('event', 'subscribe', { method: 'home', content_type: section, content_id: url })"
-      href="{{ absURL "/atom.xml" }}">{{ .Site.Params.text.fallback.title }}全体を購読する</a>
+    <a href="{{ absURL (printf "/%s/atom.xml" $section) }}">{{ (index .Site.Params.text $section).title }}を購読する</a>
+    <a href="{{ absURL "/atom.xml" }}">{{ .Site.Params.text.fallback.title }}全体を購読する</a>
   </nav>
 </aside>

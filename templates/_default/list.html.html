@@ -7,7 +7,7 @@
     {{ $section := (partial "data/section.html.html" . | unmarshal).section }}
     {{ partial "components/header.html.html" . }}
 
-    <main class="content__main content__main--{{ $section }}">
+    <main class="global__content global__content--{{ $section }}">
       {{ if eq $section "home" }}
         {{ partial "pages/home.html.html" . }}
       {{ else if eq $section "tags" }}

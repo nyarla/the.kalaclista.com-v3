@@ -1,47 +1,139 @@
 {{ $section := (partial "data/section.html.html" . | unmarshal ).section }}
 {{ $data := partial "data/meta.html.html" . | unmarshal }}
+{{ $permalink := .Page.IsPage }}
 
-<header class="content__header content__header--{{ $section }} u-container--relative">
-  <a href="{{ absURL "/nyarla/" }}" class="header__avatar c-rounded__hexicon">
-    <img src="{{ absURL "/assets/avatar.svg" }}"
-         alt="avatar icon of nyarla" height="48" width="48">
-  </a>
+<header class="global__header global__header--{{ $section }}">
+  <div class="global__header--info">
+    <nav class="global__header--legend">
+      <a href="{{ absURL "/nyarla/" }}" class="c-widget__avatar link--no-decoration">
+        <img src="{{ absURL "/assets/avatar.svg" }}"
+           alt="avatar icon of nyarla" height="48" width="48">
+      </a>
 
-  <h1 class="header__title">
-    <a href="{{ absURL "/" }}" class="c-link--no-decoration">カラクリスタ</a>
-    {{ if and (ne $section "home") (ne $section "tags") }}
-    <span>・</span>
-    {{ if ne $section "notfound" }}
-    <a href="{{ absURL (printf "/%s/" $section) }}" class="c-link--no-decoration">
-      {{ $data.name }}
-    </a>
-    {{ else }}
-    <strong>
-      {{ $data.name }}
-    </strong>
-    {{ end }}
-    {{ end }}
-  </h1>
+      <h1 class="global__header--site-title">
+        <a href="{{ absURL "/" }}" class="c-widget__title link--no-decoration">カラクリスタ</a>
+        {{ if and (ne $section "home") (ne $section "tags") }}
+          <span>・</span>
+            {{ if ne $section "notfound" }}
+              <a href="{{ absURL (printf "/%s/" $section) }}" class="c-widget__title link--no-decoration">
+              {{ $data.name }}
+              </a>
+          {{ else }}
+            <strong class="c-widget__title">
+            {{ $data.name }}
+            </strong>
+        {{ end }}
+      {{ end }}
+      </h1>
+    </nav>
 
-  <p class="header__description">{{ $data.description_html | safeHTML }}</p>
-  <p class="header__message">{{ $data.message | safeHTML }}</p>
+    <details class="global__header--details">
+      <summary>この Webサイトについて</summary>
+      <div class="global__header--headline">
+        <p class="global__header--description">{{ $data.description_html | safeHTML }}</p>
+        <p class="global__header--message">{{ $data.message | safeHTML }}</p>
+      </div>
 
-  <nav class="header__sections u-container--absolute">
-    {{ range $s := slice "home" "posts" "echos" "notes" "search" "archives" }}
-      {{ $link := "/" }}
-      {{ if ne $s "home" }}
-        {{ $link = printf "/%s/" $s }}
+      <nav class="global__header--sections">
+        <ul class="global__header--websites">
+          {{ range $s := slice "home" "posts" "echos" "notes" "search" "archives" }}
+            {{ $link := "/" }}
+            {{ if ne $s "home" }}
+              {{ $link = printf "/%s/" $s }}
+            {{ end }}
+
+            {{ $current := eq $s $section }}
+
+            <li><a href="{{ absURL $link }}" class="{{ if $current }}current{{ end }} c-link--no-decoration">{{ (index $.Site.Params.text $s).label }}</a></li>
+          {{ end }}
+         </ul>
+
+         <ul class="global__header--abouts">
+            <li><a href="{{ absURL "/nyarla/" }}">私について</a></li>
+            <li><a href="{{ absURL "/policies/"}}">運営ポリシー</a></li>
+            <li><a href="{{ absURL "/licenses/" }}">ライセンス</a></li>
+        </ul>
+      </nav>
+    </details>
+
+    {{ if and .Page.IsPage (or (eq $section "posts") (eq $section "echos") (eq $section "notes")) }}
+    {{ $data := partial "data/content.html.html" . | unmarshal }}
+    <details class="global__header--entry">
+      <summary>この記事について</summary>
+
+      {{ with $data.tags}}
+      <nav class="global__header--tags">
+        <h1>タグ</h1>
+        <ul>
+          {{ range $tag := sort . }}
+          <li><a href="{{ absURL (printf "/tags/%s/" $tag) }}">{{ $tag }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
       {{ end }}
 
-      {{ $current := eq $s $section }}
-
-      <a href="{{ absURL $link }}" class="{{ if $current }}current{{ end }} c-link--no-decoration">{{ (index $.Site.Params.text $s).label }}</a>
+      <nav class="global__header--share">
+        <h1>あとで読む？</h1>
+        <ul>
+          <li>
+              <a  target="_blank" rel="noreferrer" 
+                  href="https://pinboard.in/add?next=same&url={{ $data.url }}&title={{ $data.title }}" class="stack__pinboard link--no-decoration">
+                <img width="16" height="16" src="{{ absURL "/assets/pinboard.svg" }}" alt="Pinboard">に追加
+              </a>
+          </li>
+          <li>
+            <a  target="_blank" rel="noreferrer" 
+                href="https://www.instapaper.com/edit?url={{ $data.url }}&title={{ $data.title }}" class="stack__instapaper link--no-decoration">
+              <img width="16" height="16" src="{{ absURL "/assets/instapaper.svg" }}" alt="Instapaper">に追加
+            </a>
+          </li>
+          <li>
+            <a  target="_blank" rel="noreferrer"
+                href="https://getpocket.com/edit?url={{ $data.url }}&title={{ $data.title }}" class="stack__pocket link--no-decoration">
+              <img width="16" height="16" src="{{ absURL "/assets/next.svg" }}" alt="Pocket">に追加
+            </a>
+          </li>
+          <li>
+            <a  target="_blank" rel="noreferrer"
+                href="https://b.hatena.ne.jp/add?mode=confirm&url={{ $data.url }}&title={{ $data.title }}" class="stack__hatena-bookmark link--no-decoration">
+              <img width="16" height="16" src="{{ absURL "/assets/hatena-bookmark.svg" }}" alt="はてなブックマーク">に追加
+            </a>
+          </li>
+        </ul>
+                
+        <h1>共有する？</h1>
+        <ul>
+          <li>
+            <a  target="_blank" rel="noreferrer"
+                href="https://twitter.com/intent/tweet?text={{ .Title }}%0D%0A{{ .Permalink }}" class="share__twitter link--no-decoration">
+              <img src="{{ absURL "/assets/twitter.svg" }}" width="16" height="16" alt="Twitter">
+              でつぶやく
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&t={{ .Title }}" class="share__facebook link--no-decoration">
+              <img src="{{ absURL "/assets/facebook.svg" }}" width="16" height="16" alt="Facebook">
+              に共有
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer"
+                href="https://pinboard.in/add?next=same&url={{ .Permalink }}&title={{ .Title }}" class="share__pinboard link--no-decoration">
+              <img src="{{ absURL "/assets/pinboard.svg" }}" width="16" height="16" alt="Pinboard">
+              でブックマーク
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer" 
+                href="https://b.hatena.ne.jp/add?mode=confirm&url={{ .Permalink }}&title={{ .Title }}" class="share__hatena-bookmark link--no-decoration">
+              <img src="{{ absURL "/assets/hatena-bookmark.svg" }}" width="16" height="16" alt="はてなブックマーク">
+              でブックマーク
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </details>
     {{ end }}
-  </nav>
-
-  <nav class="header__about u-container--absolute">
-    <a href="{{ absURL "/nyarla/" }}">私について</a>
-    <a href="{{ absURL "/policies/"}}">運営ポリシー</a>
-    <a href="{{ absURL "/licenses/" }}">ライセンス</a>
-  </nav>
+  </div>
 </header>

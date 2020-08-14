@@ -1,0 +1,76 @@
+body {
+  display: block;
+  max-width: 45em;
+  margin: 1em auto;
+}
+
+.global__header > .global__header--info {
+  position: static;
+}
+
+.global__header--legend {
+  max-width: none;
+  text-align: center;
+}
+
+.global__header--details,
+.global__header--entry {
+  margin: 1.5em 1em;
+}
+
+.global__content {
+  margin-top: 0;
+  & > * {
+    width: auto;
+  }
+}
+
+.content__summary {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1em 3em 1em;
+
+  & > h1 {
+    order: 1;
+    margin: 0 0 1em 0;
+    font-size: 1.25em;
+  }
+
+  & > .content__summary--description {
+    order: 2;
+  }
+
+  & > aside {
+    order: 3;
+    display: block;
+    text-align: right;
+    & > p {
+      margin: 1em 0;
+    }
+    & > .content__summary--datetime > time {
+      display: inline;
+    }
+    & > .content__summary--datetime > time::after {
+      display: block;
+      content: "\A";
+    }
+  }
+}
+
+.content__subscribe {
+  & > nav > a {
+    display: block;
+    margin: 1em 0;
+  }
+}
+
+.content__summary--description.p-content {
+  text-decoration: none;
+}
+
+.content__entry,
+.content__author,
+.global__navigation--archives,
+.global__navigation--paginate {
+  margin: 0 1em 3em 1em;
+}
