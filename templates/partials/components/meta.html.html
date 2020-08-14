@@ -86,6 +86,7 @@
 {{ end }}
 
 {{ if not .Site.IsServer }}
+<script data-ad-client="ca-pub-1273544194033160" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async>
   let isScriptLoaded = false;
   const events = 'mousemove mousedown scroll touchevent'.split(' ');
@@ -103,12 +104,6 @@
     if (! isScriptLoaded) {
       isScriptLoaded = true;
       events.forEach(function (ev) { document.removeEventListener(ev, onLoad) });
-      
-      {{ if default true .Page.Params.tags }}
-      const adsLoader = scriptLoader('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
-      adsLoader.setAttribute('data-ad-client', 'ca-pub-1273544194033160');
-      document.body.appendChild(adsLoader);
-      {{ end }}
       document.body.appendChild(scriptLoader('https://www.googletagmanager.com/gtag/js?id=UA-158600592-1'));
     }
   }
