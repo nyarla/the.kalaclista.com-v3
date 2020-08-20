@@ -1,0 +1,8 @@
+{{ $src := . }}
+
+{{ $num := strings.RuneCount $src }}
+{{ $speed := div 600 60 }}
+
+{{ $minute := div (div $num $speed) 60 }}
+
+{{ dict "minute" $minute | jsonify }}
